@@ -157,7 +157,7 @@ export default function MobileMenu({
 
           {/* Favoritos */}
           <Link
-            href="/favoritos"
+            href="/cuenta/favoritos"
             onClick={handleNavClick}
             className="px-4 py-3 flex items-center gap-3 text-sm font-semibold text-gray-900 hover:bg-gray-50 transition-colors relative"
           >

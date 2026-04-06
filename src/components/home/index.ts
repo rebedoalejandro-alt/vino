@@ -7,5 +7,5 @@ export { InfoBanners } from './InfoBanners';
 export { NewArrivals } from './NewArrivals';
 export { OffersSection } from './OffersSection';
 export { Recommendations } from './Recommendations';
-export { ReferralBanner } from './ReferralBanner';
+export { ReferralBanner } from './cuenta/referidosBanner';
 export { SeoLinks } from './SeoLinks';

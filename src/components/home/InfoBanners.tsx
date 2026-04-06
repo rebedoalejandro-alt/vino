@@ -19,7 +19,7 @@ const banners: InfoBanner[] = [
     icon: <Sparkles className="h-8 w-8" />,
     title: 'Sommelier Virtual',
     description: 'Deja que te asesoremos',
-    href: '/sommelier',
+    href: '/quienes-somos',
     bgColor: 'bg-blue-50 hover:bg-blue-100',
   },
   {
@@ -27,7 +27,7 @@ const banners: InfoBanner[] = [
     icon: <Gift className="h-8 w-8" />,
     title: 'Regala Vino',
     description: 'Packs desde 29,90€',
-    href: '/packs',
+    href: '/vinos',
     bgColor: 'bg-pink-50 hover:bg-pink-100',
   },
   {
@@ -35,7 +35,7 @@ const banners: InfoBanner[] = [
     icon: <Leaf className="h-8 w-8" />,
     title: 'Vinos Ecológicos',
     description: 'Cuida el planeta',
-    href: '/shop?filter=organic',
+    href: '/vinos-ecologicos',
     bgColor: 'bg-green-50 hover:bg-green-100',
   },
   {
@@ -43,7 +43,7 @@ const banners: InfoBanner[] = [
     icon: <Droplets className="h-8 w-8" />,
     title: 'Vinos Naturales',
     description: 'Sin aditivos',
-    href: '/shop?filter=natural',
+    href: '/vinos?filter=natural',
     bgColor: 'bg-amber-50 hover:bg-amber-100',
   },
 ];

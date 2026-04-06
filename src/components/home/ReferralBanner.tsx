@@ -26,7 +26,7 @@ export const ReferralBanner: React.FC<ReferralBannerProps> = ({ className = '' }
           <Button
             variant="secondary"
             className="bg-black hover:bg-gray-800 text-white font-bold px-8 py-3"
-            onClick={() => window.location.href = '/referral'}
+            onClick={() => window.location.href = '/cuenta/referidos'}
           >
             Descubrir programa
           </Button>

@@ -85,7 +85,7 @@ export default function Header() {
 
                 {/* Favoritos */}
                 <Link
-                  href="/favoritos"
+                  href="/cuenta/favoritos"
                   className="relative text-gray-700 hover:text-gray-900 transition-colors p-2"
                   aria-label="Favoritos"
                   title="Favoritos"

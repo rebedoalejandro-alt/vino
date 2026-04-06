@@ -293,7 +293,7 @@ export const FOOTER_LINKS = {
   servicio: [
     { label: "Mi cuenta", href: "/cuenta" },
     { label: "Pedidos", href: "/pedidos" },
-    { label: "Lista de deseos", href: "/deseos" },
+    { label: "Lista de deseos", href: "/cuenta/favoritos" },
     { label: "Carrito", href: "/carrito" },
   ],
   informacion: [

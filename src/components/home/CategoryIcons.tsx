@@ -19,7 +19,7 @@ const categories: CategoryIcon[] = [
     label: 'Vino Tinto',
     bgColor: 'bg-red-600',
     emoji: '🍷',
-    href: '/shop?category=tinto',
+    href: '/vinos?tipo=tinto',
   },
   {
     id: 'blanco',
@@ -27,7 +27,7 @@ const categories: CategoryIcon[] = [
     label: 'Vino Blanco',
     bgColor: 'bg-yellow-500',
     emoji: '🍯',
-    href: '/shop?category=blanco',
+    href: '/vinos?tipo=blanco',
   },
   {
     id: 'rose',
@@ -35,7 +35,7 @@ const categories: CategoryIcon[] = [
     label: 'Vino Rosé',
     bgColor: 'bg-pink-500',
     emoji: '🌸',
-    href: '/shop?category=rose',
+    href: '/vinos?tipo=rosado',
   },
   {
     id: 'generoso',
@@ -43,7 +43,7 @@ const categories: CategoryIcon[] = [
     label: 'Vino Generoso',
     bgColor: 'bg-amber-700',
     emoji: '🥃',
-    href: '/shop?category=generoso',
+    href: '/vinos?tipo=generoso',
   },
   {
     id: 'dulce',
@@ -51,7 +51,7 @@ const categories: CategoryIcon[] = [
     label: 'Vino Dulce',
     bgColor: 'bg-orange-600',
     emoji: '🍊',
-    href: '/shop?category=dulce',
+    href: '/vinos?tipo=dulce',
   },
   {
     id: 'cava',
@@ -59,7 +59,7 @@ const categories: CategoryIcon[] = [
     label: 'Cava',
     bgColor: 'bg-yellow-400',
     emoji: '🍾',
-    href: '/shop?category=cava',
+    href: '/vinos?tipo=cava',
   },
   {
     id: 'champagne',
@@ -67,7 +67,7 @@ const categories: CategoryIcon[] = [
     label: 'Champagne',
     bgColor: 'bg-yellow-600',
     emoji: '🎉',
-    href: '/shop?category=champagne',
+    href: '/vinos?tipo=champagne',
   },
   {
     id: 'prosecco',
@@ -75,7 +75,7 @@ const categories: CategoryIcon[] = [
     label: 'Prosecco',
     bgColor: 'bg-green-400',
     emoji: '✨',
-    href: '/shop?category=prosecco',
+    href: '/vinos?tipo=prosecco',
   },
   {
     id: 'vermut',
@@ -83,7 +83,7 @@ const categories: CategoryIcon[] = [
     label: 'Vermut',
     bgColor: 'bg-amber-900',
     emoji: '🌿',
-    href: '/shop?category=vermut',
+    href: '/vinos?tipo=vermut',
   },
 ];
 

@@ -19,7 +19,7 @@ export const OffersSection: React.FC<OffersSectionProps> = ({ products, classNam
         <div className="flex justify-between items-center mb-8">
           <h2 className="text-3xl font-bold text-black">Ofertas especiales</h2>
           <Link
-            href="/shop?filter=offers"
+            href="/vinos?filter=offers"
             className="text-yellow-600 hover:text-yellow-700 font-semibold text-sm md:text-base"
           >
             Ver todas &gt;

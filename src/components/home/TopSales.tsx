@@ -10,16 +10,16 @@ interface TopSalesTag {
 }
 
 const tags: TopSalesTag[] = [
-  { id: 'tintos', label: 'Vinos tintos', href: '/shop?category=tinto' },
-  { id: 'blancos', label: 'Vinos blancos', href: '/shop?category=blanco' },
-  { id: 'ribera', label: 'Ribera del Duero', href: '/shop?region=ribera' },
-  { id: 'rioja', label: 'Rioja', href: '/shop?region=rioja' },
-  { id: 'priorat', label: 'Priorat', href: '/shop?region=priorat' },
-  { id: 'champagne', label: 'Champagne', href: '/shop?category=champagne' },
-  { id: 'eco', label: 'Vinos ecológicos', href: '/shop?filter=organic' },
-  { id: 'parker', label: 'Parker 90+', href: '/shop?filter=parker90' },
-  { id: 'regalos', label: 'Regalos', href: '/shop?filter=gifts' },
-  { id: 'cavas', label: 'Cavas', href: '/shop?category=cava' },
+  { id: 'tintos', label: 'Vinos tintos', href: '/vinos?tipo=tinto' },
+  { id: 'blancos', label: 'Vinos blancos', href: '/vinos?tipo=blanco' },
+  { id: 'ribera', label: 'Ribera del Duero', href: '/vinos?region=ribera' },
+  { id: 'rioja', label: 'Rioja', href: '/vinos?region=rioja' },
+  { id: 'priorat', label: 'Priorat', href: '/vinos?region=priorat' },
+  { id: 'champagne', label: 'Champagne', href: '/vinos?tipo=champagne' },
+  { id: 'eco', label: 'Vinos ecológicos', href: '/vinos-ecologicos' },
+  { id: 'parker', label: 'Parker 90+', href: '/vinos?filter=parker90' },
+  { id: 'regalos', label: 'Regalos', href: '/vinos?filter=gifts' },
+  { id: 'cavas', label: 'Cavas', href: '/vinos?tipo=cava' },
 ];
 
 interface TopSalesProps {

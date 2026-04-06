@@ -17,7 +17,7 @@ export const Recommendations: React.FC<RecommendationsProps> = ({ products, clas
         <div className="flex justify-between items-center mb-8">
           <h2 className="text-3xl font-bold text-black">Recomendaciones para ti</h2>
           <Link
-            href="/shop?sort=featured"
+            href="/vinos?sort=featured"
             className="text-yellow-600 hover:text-yellow-700 font-semibold text-sm md:text-base"
           >
             Ver más &gt;

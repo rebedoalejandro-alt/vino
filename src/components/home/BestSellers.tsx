@@ -18,7 +18,7 @@ export const BestSellers: React.FC<BestSellersProps> = ({ products, className = 
         <div className="flex justify-between items-center mb-8">
           <h2 className="text-3xl font-bold text-black">Los más vendidos del mes</h2>
           <Link
-            href="/shop?sort=bestseller"
+            href="/vinos?sort=bestseller"
             className="text-yellow-600 hover:text-yellow-700 font-semibold text-sm md:text-base"
           >
             Ver todos &gt;

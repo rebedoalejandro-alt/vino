@@ -19,7 +19,7 @@ const slides: Slide[] = [
     title: 'Descubre los mejores vinos de España',
     subtitle: 'Seleccionados por nuestros sommeliers',
     ctaText: 'Ver selección',
-    ctaLink: '/shop',
+    ctaLink: '/vinos',
     gradient: 'from-red-900 via-red-800 to-red-700',
   },
   {
@@ -27,7 +27,7 @@ const slides: Slide[] = [
     title: 'Novedades de temporada',
     subtitle: 'Las últimas añadas ya disponibles',
     ctaText: 'Explorar novedades',
-    ctaLink: '/shop?filter=new',
+    ctaLink: '/vinos?sort=newest',
     gradient: 'from-purple-900 via-purple-800 to-purple-700',
   },
   {
@@ -35,7 +35,7 @@ const slides: Slide[] = [
     title: 'Ofertas especiales',
     subtitle: 'Hasta -40% en vinos seleccionados',
     ctaText: 'Ver ofertas',
-    ctaLink: '/shop?filter=offers',
+    ctaLink: '/vinos?filter=offers',
     gradient: 'from-amber-900 via-amber-800 to-amber-700',
   },
   {
@@ -43,7 +43,7 @@ const slides: Slide[] = [
     title: 'Regala vino',
     subtitle: 'Packs y selecciones perfectas para regalar',
     ctaText: 'Ver packs',
-    ctaLink: '/packs',
+    ctaLink: '/vinos',
     gradient: 'from-yellow-900 via-yellow-800 to-yellow-700',
   },
 ];

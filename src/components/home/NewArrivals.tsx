@@ -18,7 +18,7 @@ export const NewArrivals: React.FC<NewArrivalsProps> = ({ products, className = 
         <div className="flex justify-between items-center mb-8">
           <h2 className="text-3xl font-bold text-black">Novedades</h2>
           <Link
-            href="/shop?sort=newest"
+            href="/vinos?sort=newest"
             className="text-yellow-600 hover:text-yellow-700 font-semibold text-sm md:text-base"
           >
             Ver todos &gt;
