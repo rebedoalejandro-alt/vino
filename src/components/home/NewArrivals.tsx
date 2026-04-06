@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { Product } from '@/types';
 import { ProductCard } from '../product/ProductCard';
 import { Carousel } from '../ui/Carousel';
+import { useCart } from '@/hooks/useCart';
 
 interface NewArrivalsProps {
   products: Product[];
@@ -12,6 +13,8 @@ interface NewArrivalsProps {
 }
 
 export const NewArrivals: React.FC<NewArrivalsProps> = ({ products, className = '' }) => {
+  const addItem = useCart((state) => state.addItem);
+
   return (
     <section className={`py-12 bg-white ${className}`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -32,7 +35,7 @@ export const NewArrivals: React.FC<NewArrivalsProps> = ({ products, className = 
         >
           {products.slice(0, 8).map((product) => (
             <div key={product.id} className="h-full">
-              <ProductCard product={product} />
+              <ProductCard product={product} onAddToCart={addItem} />
             </div>
           ))}
         </Carousel>
