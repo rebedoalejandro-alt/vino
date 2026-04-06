@@ -11,6 +11,7 @@ interface Slide {
   ctaText: string;
   ctaLink: string;
   gradient: string;
+  image: string;
 }
 
 const slides: Slide[] = [
@@ -20,7 +21,8 @@ const slides: Slide[] = [
     subtitle: 'Seleccionados por nuestros sommeliers',
     ctaText: 'Ver selección',
     ctaLink: '/vinos',
-    gradient: 'from-red-900 via-red-800 to-red-700',
+    gradient: 'from-red-900/80 via-red-800/70 to-red-700/60',
+    image: 'https://images.unsplash.com/photo-1506377247377-2a5b3b417ebb?w=1600&h=900&fit=crop',
   },
   {
     id: 2,
@@ -28,7 +30,8 @@ const slides: Slide[] = [
     subtitle: 'Las últimas añadas ya disponibles',
     ctaText: 'Explorar novedades',
     ctaLink: '/vinos?sort=newest',
-    gradient: 'from-purple-900 via-purple-800 to-purple-700',
+    gradient: 'from-purple-900/80 via-purple-800/70 to-purple-700/60',
+    image: 'https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?w=1600&h=900&fit=crop',
   },
   {
     id: 3,
@@ -36,7 +39,8 @@ const slides: Slide[] = [
     subtitle: 'Hasta -40% en vinos seleccionados',
     ctaText: 'Ver ofertas',
     ctaLink: '/vinos?filter=offers',
-    gradient: 'from-amber-900 via-amber-800 to-amber-700',
+    gradient: 'from-amber-900/80 via-amber-800/70 to-amber-700/60',
+    image: 'https://images.unsplash.com/photo-1543418219-44e30b057fea?w=1600&h=900&fit=crop',
   },
   {
     id: 4,
@@ -44,7 +48,8 @@ const slides: Slide[] = [
     subtitle: 'Packs y selecciones perfectas para regalar',
     ctaText: 'Ver packs',
     ctaLink: '/vinos',
-    gradient: 'from-yellow-900 via-yellow-800 to-yellow-700',
+    gradient: 'from-yellow-900/80 via-yellow-800/70 to-yellow-700/60',
+    image: 'https://images.unsplash.com/photo-1474722883778-792e7990302f?w=1600&h=900&fit=crop',
   },
 ];
 
@@ -59,7 +64,6 @@ export const HeroSlider: React.FC<HeroSliderProps> = ({ className = '' }) => {
     const interval = setInterval(() => {
       setCurrentSlide((prev) => (prev + 1) % slides.length);
     }, 5000);
-
     return () => clearInterval(interval);
   }, []);
 
@@ -79,25 +83,36 @@ export const HeroSlider: React.FC<HeroSliderProps> = ({ className = '' }) => {
 
   return (
     <div className={`relative w-full h-96 md:h-[500px] overflow-hidden rounded-lg ${className}`}>
-      {/* Slide */}
+      {/* Background Image */}
+      <div className="absolute inset-0">
+        <img
+          src={slide.image}
+          alt={slide.title}
+          className="w-full h-full object-cover transition-opacity duration-500"
+          key={slide.id}
+        />
+      </div>
+
+      {/* Gradient Overlay */}
       <div
         className={`absolute inset-0 bg-gradient-to-br ${slide.gradient} transition-all duration-500 ease-in-out`}
-      >
-        <div className="absolute inset-0 flex flex-col items-center justify-center text-white px-4 md:px-8">
-          <h1 className="text-3xl md:text-5xl font-bold text-center mb-4 drop-shadow-lg">
-            {slide.title}
-          </h1>
-          <p className="text-lg md:text-xl text-white/90 text-center mb-8 drop-shadow-lg">
-            {slide.subtitle}
-          </p>
-          <Button
-            variant="primary"
-            className="bg-yellow-400 hover:bg-yellow-500 text-black font-bold px-8 py-3"
-            onClick={() => window.location.href = slide.ctaLink}
-          >
-            {slide.ctaText}
-          </Button>
-        </div>
+      />
+
+      {/* Content */}
+      <div className="absolute inset-0 flex flex-col items-center justify-center text-white px-4 md:px-8 z-10">
+        <h1 className="text-3xl md:text-5xl font-bold text-center mb-4 drop-shadow-lg">
+          {slide.title}
+        </h1>
+        <p className="text-lg md:text-xl text-white/90 text-center mb-8 drop-shadow-lg">
+          {slide.subtitle}
+        </p>
+        <Button
+          variant="primary"
+          className="bg-yellow-400 hover:bg-yellow-500 text-black font-bold px-8 py-3"
+          onClick={() => window.location.href = slide.ctaLink}
+        >
+          {slide.ctaText}
+        </Button>
       </div>
 
       {/* Navigation Arrows */}
@@ -108,7 +123,6 @@ export const HeroSlider: React.FC<HeroSliderProps> = ({ className = '' }) => {
       >
         <ChevronLeft className="h-6 w-6" />
       </button>
-
       <button
         onClick={nextSlide}
         className="absolute right-4 top-1/2 -translate-y-1/2 z-20 bg-white/80 hover:bg-white text-black rounded-full p-2 transition-colors"
