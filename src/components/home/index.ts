@@ -1,0 +1,11 @@
+export { HeroSlider } from './HeroSlider';
+export { CategoryIcons } from './CategoryIcons';
+export { TopSales } from './TopSales';
+export { BestSellers } from './BestSellers';
+export { BlogPreview } from './BlogPreview';
+export { InfoBanners } from './InfoBanners';
+export { NewArrivals } from './NewArrivals';
+export { OffersSection } from './OffersSection';
+export { Recommendations } from './Recommendations';
+export { ReferralBanner } from './ReferralBanner';
+export { SeoLinks } from './SeoLinks';
