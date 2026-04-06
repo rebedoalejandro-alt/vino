@@ -30,42 +30,6 @@ export interface Product {
   updatedAt: Date;
 }
 
-
-export interface Bodega {
-  id: string;
-  name: string;
-  description: string;
-  country: string;// Database Models
-export interface Product {
-  id: string;
-  name: string;
-  description: string;
-  price: number;
-  comparePrice?: number;
-  image: string;
-  gallery?: string[];
-  sku: string;
-  stock: number;
-  featured: boolean;
-  bodegaId: string;
-  bodega?: Bodega;
-  regionId: string;
-  region?: Region;
-  categoryId: string;
-  category?: Category;
-  grapeIds: string[];
-  grapes?: Grape[];
-  wineType: WineType;
-  vintage: number;
-  volume: number;
-  alcohol: number;
-  acidity: number;
-  ratings?: Rating[];
-  reviews?: Review[];
-  createdAt: Date;
-  updatedAt: Date;
-}
-
 export interface Bodega {
   id: string;
   name: string;
