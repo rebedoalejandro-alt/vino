@@ -4,6 +4,7 @@ import React from 'react';
 import Link from 'next/link';
 import { Product } from '@/types';
 import { ProductCard } from '../product/ProductCard';
+import { useCart } from '@/hooks/useCart';
 
 interface OffersSectionProps {
   products: Product[];
@@ -11,6 +12,7 @@ interface OffersSectionProps {
 }
 
 export const OffersSection: React.FC<OffersSectionProps> = ({ products, className = '' }) => {
+  const addItem = useCart((state) => state.addItem);
   const discountedProducts = products.filter((p) => p.comparePrice && p.comparePrice > p.price);
 
   return (
@@ -26,12 +28,12 @@ export const OffersSection: React.FC<OffersSectionProps> = ({ products, classNam
           </Link>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 items-stretch">
           {(discountedProducts.length > 0 ? discountedProducts : products)
             .slice(0, 8)
             .map((product) => (
-              <div key={product.id}>
-                <ProductCard product={product} />
+              <div key={product.id} className="h-full">
+                <ProductCard product={product} onAddToCart={addItem} />
               </div>
             ))}
         </div>
