@@ -21,7 +21,7 @@ const mockBodegaData = {
   region: 'Ribera del Duero',
   founded: 1864,
   mainGrapes: ['Tinto Fino', 'Cabernet Sauvignon', 'Merlot'],
-  image: 'https://via.placeholder.com/1200x600?text=Vega+Sicilia+Bodega',
+  image: 'https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?w=400&h=600&fit=crop',
   description: `Vega Sicilia es una bodega legendaria con más de 150 años de historia, fundada en 1864 en la Ribera del Duero. Es uno de los productores de vino más emblemáticos de España y del mundo, reconocido internacionalmente por la excelencia y consistencia de sus vinos.
 
 La bodega fue pionera en introducir la crianza en barriles de roble francés en la Ribera del Duero, una práctica que revolucionó la elaboración de vinos en la región. Desde sus inicios, Vega Sicilia ha mantenido un compromiso inquebrantable con la calidad, utilizando únicamente uvas de sus propios viñedos y aplicando los más estrictos controles de producción.

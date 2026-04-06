@@ -30,7 +30,7 @@ export default function BlogPage() {
       date: '15 de marzo, 2024',
       author: 'Carlos López',
       category: 'Guías',
-      image: 'https://via.placeholder.com/600x400?text=Vino+Rioja',
+      image: 'https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?w=400&h=600&fit=crop',
       readTime: '8 min',
     },
     {
@@ -42,7 +42,7 @@ export default function BlogPage() {
       date: '10 de marzo, 2024',
       author: 'María Fernández',
       category: 'Maridaje',
-      image: 'https://via.placeholder.com/600x400?text=Vino+Blanco+Pescado',
+      image: 'https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?w=400&h=600&fit=crop',
       readTime: '6 min',
     },
     {
@@ -54,7 +54,7 @@ export default function BlogPage() {
       date: '5 de marzo, 2024',
       author: 'Juan García',
       category: 'Consejos',
-      image: 'https://via.placeholder.com/600x400?text=Almacenamiento+Vino',
+      image: 'https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?w=400&h=600&fit=crop',
       readTime: '7 min',
     },
     {
@@ -66,7 +66,7 @@ export default function BlogPage() {
       date: '1 de marzo, 2024',
       author: 'Pedro Sánchez',
       category: 'Tendencias',
-      image: 'https://via.placeholder.com/600x400?text=Vino+Natural',
+      image: 'https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?w=400&h=600&fit=crop',
       readTime: '9 min',
     },
     {
@@ -78,7 +78,7 @@ export default function BlogPage() {
       date: '25 de febrero, 2024',
       author: 'Ana Martínez',
       category: 'Guías',
-      image: 'https://via.placeholder.com/600x400?text=Espumoso+Español',
+      image: 'https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?w=400&h=600&fit=crop',
       readTime: '6 min',
     },
     {
@@ -90,7 +90,7 @@ export default function BlogPage() {
       date: '20 de febrero, 2024',
       author: 'Carlos López',
       category: 'Entrevistas',
-      image: 'https://via.placeholder.com/600x400?text=Sommelier',
+      image: 'https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?w=400&h=600&fit=crop',
       readTime: '10 min',
     },
     {
@@ -102,7 +102,7 @@ export default function BlogPage() {
       date: '15 de febrero, 2024',
       author: 'María Fernández',
       category: 'Temporada',
-      image: 'https://via.placeholder.com/600x400?text=Vino+Rosado',
+      image: 'https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?w=400&h=600&fit=crop',
       readTime: '5 min',
     },
     {
@@ -114,7 +114,7 @@ export default function BlogPage() {
       date: '10 de febrero, 2024',
       author: 'Juan García',
       category: 'Regiones',
-      image: 'https://via.placeholder.com/600x400?text=Ribera+Duero',
+      image: 'https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?w=400&h=600&fit=crop',
       readTime: '8 min',
     },
     {
@@ -126,7 +126,7 @@ export default function BlogPage() {
       date: '5 de febrero, 2024',
       author: 'Pedro Sánchez',
       category: 'Educación',
-      image: 'https://via.placeholder.com/600x400?text=Cata+Vinos',
+      image: 'https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?w=400&h=600&fit=crop',
       readTime: '7 min',
     },
   ];

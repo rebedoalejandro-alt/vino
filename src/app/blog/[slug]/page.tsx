@@ -17,7 +17,7 @@ export default function BlogArticlePage() {
     date: '15 de marzo, 2024',
     readTime: '8 min',
     category: 'Guías',
-    image: 'https://via.placeholder.com/1200x600?text=Vino+Rioja',
+    image: 'https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?w=400&h=600&fit=crop',
   };
 
   const breadcrumbItems = [
@@ -30,19 +30,19 @@ export default function BlogArticlePage() {
       title: 'Los mejores vinos naturales de 2024',
       slug: 'mejores-vinos-naturales-2024',
       excerpt: 'Descubre nuestra selección de vinos naturales y ecológicos.',
-      image: 'https://via.placeholder.com/300x200?text=Vino+Natural',
+      image: 'https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?w=400&h=600&fit=crop',
     },
     {
       title: 'Ribera del Duero: historia y tradición',
       slug: 'ribera-duero-historia',
       excerpt: 'Viaja por la historia y tradición de una región vinícola.',
-      image: 'https://via.placeholder.com/300x200?text=Ribera+Duero',
+      image: 'https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?w=400&h=600&fit=crop',
     },
     {
       title: 'Cómo almacenar correctamente tus vinos',
       slug: 'como-almacenar-vinos',
       excerpt: 'Consejos prácticos para almacenar tus botellas de vino.',
-      image: 'https://via.placeholder.com/300x200?text=Almacenamiento',
+      image: 'https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?w=400&h=600&fit=crop',
     },
   ];
 
