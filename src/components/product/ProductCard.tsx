@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
+import Link from 'next/link';
 import { Product, Rating } from '@/types';
 import { Button } from '../ui/Button';
 import { Badge } from '../ui/Badge';
@@ -38,7 +39,9 @@ export const ProductCard: React.FC<ProductCardProps> = ({
   const isOrganic = product.grapes?.some((g) => g.name.toLowerCase().includes('organic'));
   const isNew = new Date(product.createdAt).getTime() > Date.now() - 30 * 24 * 60 * 60 * 1000;
 
-  const handleAddToCart = () => {
+  const handleAddToCart = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
     if (onAddToCart) {
       onAddToCart(product, quantity);
       setQuantity(1);
@@ -54,14 +57,20 @@ export const ProductCard: React.FC<ProductCardProps> = ({
 
   if (mode === 'list') {
     return (
-      <div
-        className={`flex gap-6 bg-white border border-gray-200 rounded-lg overflow-hidden hover:shadow-lg transition-shadow ${className}`}
-      >
+      <Link href={`/vino/${product.slug}`}>
+        <div
+          className={`flex gap-6 bg-white border border-gray-200 rounded-lg overflow-hidden hover:shadow-lg transition-shadow cursor-pointer ${className}`}
+        >
         <div className="flex-shrink-0 w-48 h-48">
           <img
             src={product.image}
             alt={product.name}
             className="w-full h-full object-contain bg-white p-4"
+            onError={(e) => {
+              const target = e.target as HTMLImageElement;
+              target.onerror = null;
+              target.src = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 150' fill='%23ddd'%3E%3Crect width='100' height='150' rx='5' fill='%23f3f4f6'/%3E%3Cpath d='M45 20h10v60h-10z' fill='%23d1d5db'/%3E%3Ccircle cx='50' cy='100' r='25' fill='%23d1d5db'/%3E%3Cpath d='M42 95h16v10H42z' fill='%23f3f4f6'/%3E%3C/svg%3E";
+            }}
           />
         </div>
 
@@ -87,7 +96,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
             {highestRating && (
               <CriticBadge
                 score={highestRating.score}
-                critic={highestRating.critic as 'Parker' | 'Suckling' | 'Peñín' | 'Tim Atkin' | 'Jancis Robinson'}
+                critic={highestRating.critic as 'Parker' | 'Suckling' | 'Pe\u00f1\u00edn' | 'Tim Atkin' | 'Jancis Robinson'}
                 size="sm"
               />
             )}
@@ -102,26 +111,26 @@ export const ProductCard: React.FC<ProductCardProps> = ({
             {hasDiscount && (
               <>
                 <span className="text-lg font-bold text-red-600">
-                  {product.price.toFixed(2)}€
+                  {product.price.toFixed(2)}\u20ac
                 </span>
                 <span className="text-sm line-through text-gray-400">
-                  {product.comparePrice?.toFixed(2)}€
+                  {product.comparePrice?.toFixed(2)}\u20ac
                 </span>
                 <Badge variant="discount" value={`-${discountPercentage}%`} />
               </>
             )}
             {!hasDiscount && (
-              <span className="text-lg font-bold text-black">{product.price.toFixed(2)}€</span>
+              <span className="text-lg font-bold text-black">{product.price.toFixed(2)}\u20ac</span>
             )}
           </div>
         </div>
 
-        <div className="flex flex-col justify-between items-end p-4">
+        <div className="flex flex-col justify-between items-end p-4" onClick={(e) => { e.preventDefault(); e.stopPropagation(); }}>
           {product.stock > 0 ? (
             <>
               <QuantitySelector quantity={quantity} onChange={setQuantity} max={product.stock} />
               <Button variant="primary" onClick={handleAddToCart} className="mt-4">
-                AÑADIR AL CARRITO
+                A\u00d1ADIR AL CARRITO
               </Button>
             </>
           ) : (
@@ -133,25 +142,32 @@ export const ProductCard: React.FC<ProductCardProps> = ({
                   size="sm"
                   onClick={() => setShowStockAlert(true)}
                 >
-                  Avísame
+                  Av\u00edsame
                 </Button>
               )}
             </div>
           )}
         </div>
       </div>
+      </Link>
     );
   }
 
   return (
-    <div
-      className={`bg-white border border-gray-200 rounded-lg overflow-hidden hover:shadow-lg hover:scale-105 transition-all duration-300 flex flex-col h-full ${className}`}
-    >
+    <Link href={`/vino/${product.slug}`}>
+      <div
+        className={`bg-white border border-gray-200 rounded-lg overflow-hidden hover:shadow-lg hover:scale-105 transition-all duration-300 flex flex-col h-full cursor-pointer ${className}`}
+      >
       <div className="relative aspect-square bg-white overflow-hidden group">
         <img
           src={product.image}
           alt={product.name}
           className="w-full h-full object-contain p-4 group-hover:scale-105 transition-transform duration-300"
+          onError={(e) => {
+            const target = e.target as HTMLImageElement;
+            target.onerror = null;
+            target.src = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 150' fill='%23ddd'%3E%3Crect width='100' height='150' rx='5' fill='%23f3f4f6'/%3E%3Cpath d='M45 20h10v60h-10z' fill='%23d1d5db'/%3E%3Ccircle cx='50' cy='100' r='25' fill='%23d1d5db'/%3E%3Cpath d='M42 95h16v10H42z' fill='%23f3f4f6'/%3E%3C/svg%3E";
+          }}
         />
 
         {product.featured && (
@@ -160,7 +176,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
 
         {isNew && (
           <div className="absolute top-2 right-2 z-10">
-            <Badge variant="new" label="¡Novedad!" />
+            <Badge variant="new" label="\u00a1Novedad!" />
           </div>
         )}
 
@@ -170,7 +186,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
           </div>
         )}
 
-        <div className="absolute top-2 right-2">
+        <div className="absolute top-2 right-2" onClick={(e) => { e.preventDefault(); e.stopPropagation(); }}>
           <FavoriteButton productId={product.id} />
         </div>
       </div>
@@ -192,26 +208,26 @@ export const ProductCard: React.FC<ProductCardProps> = ({
 
         {highestRating && (
           <div className="flex justify-center mb-3">
-            <CriticBadge score={highestRating.score} critic={highestRating.critic as 'Parker' | 'Suckling' | 'Peñín' | 'Tim Atkin' | 'Jancis Robinson'} />
+            <CriticBadge score={highestRating.score} critic={highestRating.critic as 'Parker' | 'Suckling' | 'Pe\u00f1\u00edn' | 'Tim Atkin' | 'Jancis Robinson'} />
           </div>
         )}
 
         {product.stock > 0 && (
           <div className="flex items-center gap-2 text-green-600 text-xs font-semibold mb-3">
             <Truck className="h-4 w-4" />
-            Envío inmediato
+            Env\u00edo inmediato
           </div>
         )}
 
-        <div className="mb-4">
+        <div className="mt-auto mb-4">
           {hasDiscount && (
             <>
               <div className="flex items-center gap-2 mb-1">
                 <span className="text-lg font-bold text-red-600">
-                  {product.price.toFixed(2)}€
+                  {product.price.toFixed(2)}\u20ac
                 </span>
                 <span className="text-sm line-through text-gray-400">
-                  {product.comparePrice?.toFixed(2)}€
+                  {product.comparePrice?.toFixed(2)}\u20ac
                 </span>
               </div>
               <div className="flex justify-center">
@@ -221,27 +237,27 @@ export const ProductCard: React.FC<ProductCardProps> = ({
           )}
           {!hasDiscount && (
             <span className="text-lg font-bold text-black block text-center">
-              {product.price.toFixed(2)}€
+              {product.price.toFixed(2)}\u20ac
             </span>
           )}
         </div>
 
         {product.stock > 0 ? (
-          <>
+          <div onClick={(e) => { e.preventDefault(); e.stopPropagation(); }}>
             <div className="mb-3 flex justify-center">
               <QuantitySelector quantity={quantity} onChange={setQuantity} max={product.stock} />
             </div>
 
             <Button variant="primary" fullWidth onClick={handleAddToCart}>
-              AÑADIR AL CARRITO
+              A\u00d1ADIR AL CARRITO
             </Button>
-          </>
+          </div>
         ) : (
-          <div className="text-center">
+          <div className="text-center" onClick={(e) => { e.preventDefault(); e.stopPropagation(); }}>
             <p className="text-red-600 font-semibold mb-3">Agotado</p>
             {!showStockAlert ? (
               <Button variant="outline" fullWidth onClick={() => setShowStockAlert(true)}>
-                Avísame
+                Av\u00edsame
               </Button>
             ) : (
               <form onSubmit={handleEmailAlert} className="space-y-2">
@@ -262,6 +278,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
           </div>
         )}
       </div>
-    </div>
+      </div>
+    </Link>
   );
 };
