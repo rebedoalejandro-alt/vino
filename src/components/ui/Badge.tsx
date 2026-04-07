@@ -23,13 +23,9 @@ export const Badge: React.FC<BadgeProps> = ({ variant, value, label, className =
   if (variant === 'recommended') {
     return (
       <div
-        className={`fixed top-2 left-2 z-10 ${className}`}
-        style={{
-          transform: 'rotate(-45deg)',
-          transformOrigin: 'top left',
-        }}
+        className={`absolute top-2 left-2 z-10 ${className}`}
       >
-        <div className="bg-black text-white text-xs font-bold px-6 py-1 whitespace-nowrap">
+        <div className="bg-black text-white text-xs font-bold px-3 py-1 rounded whitespace-nowrap">
           {label || 'Recomendado'}
         </div>
       </div>
