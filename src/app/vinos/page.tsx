@@ -8,7 +8,7 @@ import { Pagination } from '@/components/common/Pagination';
 import { ProductCard } from '@/components/product/ProductCard';
 import { SortBar } from '@/components/product/SortBar';
 import { FilterSidebar } from '@/components/product/FilterSidebar';
-import { MOCK_PRODUCTS } from '@/lib/mock-data';
+import { CARREFOUR_PRODUCTS } from '@/lib/carrefour-products';
 
 const PRODUCTS_PER_PAGE = 12;
 
@@ -47,7 +47,7 @@ function VinosPageContent() {
   };
 
   // Simple sorting logic
-  const sortedProducts = [...MOCK_PRODUCTS];
+  const sortedProducts = [...CARREFOUR_PRODUCTS];
 
   if (sortBy === 'precio-asc') {
     sortedProducts.sort((a, b) => a.price - b.price);
@@ -85,7 +85,7 @@ function VinosPageContent() {
         <div className="max-w-7xl mx-auto">
           <h1 className="text-4xl font-bold text-black mb-4">
             Vinos
-            <span className="text-yellow-600 ml-2">({MOCK_PRODUCTS.length})</span>
+            <span className="text-yellow-600 ml-2">({CARREFOUR_PRODUCTS.length})</span>
           </h1>
 
           {/* SEO Text */}
@@ -113,7 +113,7 @@ function VinosPageContent() {
 
       {/* Sort Bar */}
       <SortBar
-        productCount={MOCK_PRODUCTS.length}
+        productCount={CARREFOUR_PRODUCTS.length}
         onSortChange={(sort) => {
           setSortBy(sort);
           setCurrentPage(1);
@@ -139,7 +139,7 @@ function VinosPageContent() {
                       key={product.id}
                       product={product}
                       mode="grid"
-                      className="h-full"
+                            className="h-full"
                     />
                   ))}
                 </div>
