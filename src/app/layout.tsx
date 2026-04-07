@@ -25,12 +25,12 @@ export const metadata: Metadata = {
     "vinos online, tienda de vinos, vinos españoles, bodega online, comprar vinos",
   authors: [{ name: "Casa del Vino" }],
   metadataBase: new URL(
-    process.env.NEXT_PUBLIC_SITE_URL || "https://casadelvino.com"
+    process.env.NEXT_PUBLIC_SITE_URL || "https://www.casadelvino.es"
   ),
   openGraph: {
     type: "website",
     locale: "es_ES",
-    url: process.env.NEXT_PUBLIC_SITE_URL || "https://casadelvino.com",
+    url: process.env.NEXT_PUBLIC_SITE_URL || "https://www.casadelvino.es",
     siteName: "Casa del Vino",
     title: "Casa del Vino | Tu tienda de vinos online",
     description:
@@ -63,7 +63,7 @@ export const metadata: Metadata = {
     },
   },
   alternates: {
-    canonical: process.env.NEXT_PUBLIC_SITE_URL || "https://casadelvino.com",
+    canonical: process.env.NEXT_PUBLIC_SITE_URL || "https://www.casadelvino.es",
   },
 };
 
@@ -82,8 +82,10 @@ export default function RootLayout({
         <link rel="apple-touch-icon" href="/favicon.ico" />
       </head>
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased bg-white text-gray-900 font-sans`}>
-        <Header />
-        <Navigation />
+        <div className="sticky top-0 z-50 bg-white shadow-sm">
+          <Header />
+          <Navigation />
+        </div>
         <main className="min-h-screen">{children}</main>
         <Footer />
       </body>
