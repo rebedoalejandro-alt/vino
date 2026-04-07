@@ -100,7 +100,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
             {highestRating && (
               <CriticBadge
                 score={highestRating.score}
-                critic={highestRating.critic as 'Parker' | 'Suckling' | 'PeÃÂ±ÃÂ­n' | 'Tim Atkin' | 'Jancis Robinson'}
+                critic={highestRating.critic as 'Parker' | 'Suckling' | 'Peñín' | 'Tim Atkin' | 'Jancis Robinson'}
                 size="sm"
               />
             )}
@@ -115,16 +115,16 @@ export const ProductCard: React.FC<ProductCardProps> = ({
             {hasDiscount && (
               <>
                 <span className="text-lg font-bold text-red-600">
-                  {product.price.toFixed(2)}Ã¢ÂÂ¬
+                  {product.price.toFixed(2)}€
                 </span>
                 <span className="text-sm line-through text-gray-400">
-                  {product.comparePrice?.toFixed(2)}Ã¢ÂÂ¬
+                  {product.comparePrice?.toFixed(2)}€
                 </span>
                 <Badge variant="discount" value={`-${discountPercentage}%`} />
               </>
             )}
             {!hasDiscount && (
-              <span className="text-lg font-bold text-black">{product.price.toFixed(2)}Ã¢ÂÂ¬</span>
+              <span className="text-lg font-bold text-black">{product.price.toFixed(2)}€</span>
             )}
           </div>
         </div>
@@ -134,7 +134,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
             <>
               <QuantitySelector quantity={quantity} onChange={setQuantity} max={product.stock} />
               <Button variant="primary" onClick={handleAddToCart} className="mt-4">
-                AÃÂADIR AL CARRITO
+                AÑADIR AL CARRITO
               </Button>
             </>
           ) : (
@@ -146,7 +146,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
                   size="sm"
                   onClick={() => setShowStockAlert(true)}
                 >
-                  AvÃÂ­same
+                  Avísame
                 </Button>
               )}
             </div>
@@ -180,7 +180,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
 
         {isNew && (
           <div className="absolute top-2 right-2 z-10">
-            <Badge variant="new" label="ÃÂ¡Novedad!" />
+            <Badge variant="new" label="¡Novedad!" />
           </div>
         )}
 
@@ -212,14 +212,14 @@ export const ProductCard: React.FC<ProductCardProps> = ({
 
         {highestRating && (
           <div className="flex justify-center mb-3">
-            <CriticBadge score={highestRating.score} critic={highestRating.critic as 'Parker' | 'Suckling' | 'PeÃÂ±ÃÂ­n' | 'Tim Atkin' | 'Jancis Robinson'} />
+            <CriticBadge score={highestRating.score} critic={highestRating.critic as 'Parker' | 'Suckling' | 'Peñín' | 'Tim Atkin' | 'Jancis Robinson'} />
           </div>
         )}
 
         {product.stock > 0 && (
           <div className="flex items-center gap-2 text-green-600 text-xs font-semibold mb-3">
             <Truck className="h-4 w-4" />
-            EnvÃÂ­o inmediato
+            Envío inmediato
           </div>
         )}
 
@@ -228,10 +228,10 @@ export const ProductCard: React.FC<ProductCardProps> = ({
             <>
               <div className="flex items-center gap-2 mb-1">
                 <span className="text-lg font-bold text-red-600">
-                  {product.price.toFixed(2)}Ã¢ÂÂ¬
+                  {product.price.toFixed(2)}€
                 </span>
                 <span className="text-sm line-through text-gray-400">
-                  {product.comparePrice?.toFixed(2)}Ã¢ÂÂ¬
+                  {product.comparePrice?.toFixed(2)}€
                 </span>
               </div>
               <div className="flex justify-center">
@@ -241,7 +241,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
           )}
           {!hasDiscount && (
             <span className="text-lg font-bold text-black block text-center">
-              {product.price.toFixed(2)}Ã¢ÂÂ¬
+              {product.price.toFixed(2)}€
             </span>
           )}
         </div>
@@ -253,7 +253,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
             </div>
 
             <Button variant="primary" fullWidth onClick={handleAddToCart}>
-              AÃÂADIR AL CARRITO
+              AÑADIR AL CARRITO
             </Button>
           </div>
         ) : (
@@ -261,7 +261,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
             <p className="text-red-600 font-semibold mb-3">Agotado</p>
             {!showStockAlert ? (
               <Button variant="outline" fullWidth onClick={() => setShowStockAlert(true)}>
-                AvÃÂ­same
+                Avísame
               </Button>
             ) : (
               <form onSubmit={handleEmailAlert} className="space-y-2">
@@ -286,4 +286,3 @@ export const ProductCard: React.FC<ProductCardProps> = ({
     </Link>
   );
 };
-// test
