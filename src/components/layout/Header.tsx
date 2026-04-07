@@ -16,7 +16,7 @@ export default function Header() {
   const wishlistCount = wishlistItems.length;
 
   return (
-    <header className="sticky top-0 z-50 bg-white">
+    <header className="bg-white">
       {/* Top Info Bar */}
       <div className="bg-gray-100 text-center py-2">
         <p className="text-xs text-gray-600 font-medium">
