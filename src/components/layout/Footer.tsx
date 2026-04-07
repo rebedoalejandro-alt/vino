@@ -252,7 +252,7 @@ export default function Footer() {
               {/* Social Media Icons */}
               <div className="flex gap-4 mb-8">
                 <a
-                  href="https://instagram.com"
+                  href="https://instagram.com/casadelvino_es"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center text-gray-300 hover:bg-yellow-400 hover:text-gray-900 transition-colors"
@@ -262,7 +262,7 @@ export default function Footer() {
                   <InstagramIcon size={20} />
                 </a>
                 <a
-                  href="https://facebook.com"
+                  href="https://facebook.com/casadelvino.es"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center text-gray-300 hover:bg-yellow-400 hover:text-gray-900 transition-colors"
@@ -272,7 +272,7 @@ export default function Footer() {
                   <FacebookIcon size={20} />
                 </a>
                 <a
-                  href="https://twitter.com"
+                  href="https://x.com/casadelvino_es"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center text-gray-300 hover:bg-yellow-400 hover:text-gray-900 transition-colors"
@@ -282,7 +282,7 @@ export default function Footer() {
                   <TwitterIcon size={20} />
                 </a>
                 <a
-                  href="https://youtube.com"
+                  href="https://youtube.com/@casadelvino"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center text-gray-300 hover:bg-yellow-400 hover:text-gray-900 transition-colors"
@@ -409,7 +409,7 @@ export default function Footer() {
         <div className="max-w-7xl mx-auto px-4 py-6">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs text-center md:text-left">
             <p>
-              &copy; 2024 Casa del Vino. Todos los derechos reservados.
+              &copy; 2026 Casa del Vino. Todos los derechos reservados.
             </p>
             <p className="md:text-right">
               La venta de bebidas alcohólicas a menores de 18 años está prohibida.
