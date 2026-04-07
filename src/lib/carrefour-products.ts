@@ -1,0 +1,338 @@
+import { Product } from '@/types';
+
+const dt = new Date('2024-01-01');
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export const bodegas: { [key: string]: any } = {
+  'tres-reinos': { id: 'b1', name: 'Tres Reinos', country: 'Spain', region: 'Castilla y León', founded: 2000, image: 'https://static.carrefour.es/hd_510x_/img_pim_food/236233_00_1.jpg' },
+  'dehesas-del-rey': { id: 'b2', name: 'Dehesas del Rey', country: 'Spain', region: 'Castilla y León', founded: 1995, image: 'https://static.carrefour.es/hd_510x_/img_pim_food/325547_00_1.jpg' },
+  'marques-de-riscal': { id: 'b3', name: 'Marqués de Riscal', country: 'Spain', region: 'La Rioja', founded: 1858, image: 'https://static.carrefour.es/hd_510x_/img_pim_food/000083_00_1.jpg' },
+  'protos': { id: 'b4', name: 'Protos', country: 'Spain', region: 'Castilla y León', founded: 1927, image: 'https://static.carrefour.es/hd_510x_/img_pim_food/000197_00_1.jpg' },
+  'cune': { id: 'b5', name: 'Cune', country: 'Spain', region: 'La Rioja', founded: 1879, image: 'https://static.carrefour.es/hd_510x_/img_pim_food/000044_00_1.jpg' },
+  'beronia': { id: 'b6', name: 'Beronia', country: 'Spain', region: 'La Rioja', founded: 1973, image: 'https://static.carrefour.es/hd_510x_/img_pim_food/000020_00_1.jpg' },
+  'marques-de-caceres': { id: 'b7', name: 'Marqués de Cáceres', country: 'Spain', region: 'La Rioja', founded: 1970, image: 'https://static.carrefour.es/hd_510x_/img_pim_food/000086_00_1.jpg' },
+  'vina-albina': { id: 'b8', name: 'Viña Albina', country: 'Spain', region: 'La Rioja', founded: 1999, image: 'https://static.carrefour.es/hd_510x_/img_pim_food/000105_00_1.jpg' },
+  'martín-códax': { id: 'b9', name: 'Martín Códax', country: 'Spain', region: 'Galicia', founded: 1986, image: 'https://static.carrefour.es/hd_510x_/img_pim_food/000152_00_1.jpg' },
+  'carrefour': { id: 'b10', name: 'Carrefour', country: 'Spain', region: 'Multi-region', founded: 1960, image: 'https://static.carrefour.es/hd_510x_/img_pim_food/513382_00_1.jpg' },
+  'coto-de-imaz': { id: 'b11', name: 'Coto de Imaz', country: 'Spain', region: 'La Rioja', founded: 1970, image: 'https://static.carrefour.es/hd_510x_/img_pim_food/000039_00_1.jpg' },
+  'ramon-bilbao': { id: 'b12', name: 'Ramón Bilbao', country: 'Spain', region: 'La Rioja', founded: 1924, image: 'https://static.carrefour.es/hd_510x_/img_pim_food/000068_00_1.jpg' },
+  'vina-pomal': { id: 'b13', name: 'Viña Pomal', country: 'Spain', region: 'La Rioja', founded: 1905, image: 'https://static.carrefour.es/hd_510x_/img_pim_food/000111_00_1.jpg' },
+  'celeste': { id: 'b14', name: 'Celeste', country: 'Spain', region: 'Castilla y León', founded: 2005, image: 'https://static.carrefour.es/hd_510x_/img_pim_food/252253_00_1.jpg' },
+  'faustino': { id: 'b15', name: 'Faustino', country: 'Spain', region: 'La Rioja', founded: 1861, image: 'https://static.carrefour.es/hd_510x_/img_pim_food/000054_00_1.jpg' },
+  'corazon-laguardia': { id: 'b16', name: 'Corazón de Laguardia', country: 'Spain', region: 'La Rioja', founded: 2010, image: 'https://static.carrefour.es/hd_510x_/img_pim_food/337291_00_1.jpg' },
+  'gloria': { id: 'b17', name: 'Glorioso', country: 'Spain', region: 'La Rioja', founded: 1990, image: 'https://static.carrefour.es/hd_510x_/img_pim_food/000060_00_1.jpg' },
+  'montecruz': { id: 'b18', name: 'Montecruz', country: 'Spain', region: 'Castilla-La Mancha', founded: 1999, image: 'https://static.carrefour.es/hd_510x_/img_pim_food/000157_00_1.jpg' },
+  'carrizal': { id: 'b19', name: 'Carrizal', country: 'Spain', region: 'La Rioja', founded: 2001, image: 'https://static.carrefour.es/hd_510x_/img_pim_food/510627_00_1.jpg' },
+  'antaño': { id: 'b20', name: 'Antaño', country: 'Spain', region: 'La Rioja', founded: 1985, image: 'https://static.carrefour.es/hd_510x_/img_pim_food/000075_00_1.jpg' },
+  'cyan': { id: 'b21', name: 'Cyan', country: 'Spain', region: 'Castilla y León', founded: 2008, image: 'https://static.carrefour.es/hd_510x_/img_pim_food/217505_00_1.jpg' },
+  'pago-carraovejas': { id: 'b22', name: 'Pago de Carraovejas', country: 'Spain', region: 'Castilla y León', founded: 1992, image: 'https://static.carrefour.es/hd_510x_/img_pim_food/000173_00_1.jpg' },
+  'dama-lago': { id: 'b23', name: 'Dama del Lago', country: 'Spain', region: 'Castilla y León', founded: 2000, image: 'https://static.carrefour.es/hd_510x_/img_pim_food/484782_00_1.jpg' },
+  'estilete': { id: 'b24', name: 'Estilete', country: 'Spain', region: 'Castilla y León', founded: 1998, image: 'https://static.carrefour.es/hd_510x_/img_pim_food/871997_00_1.jpg' },
+  'jose-pariente': { id: 'b25', name: 'José Pariente', country: 'Spain', region: 'Castilla y León', founded: 1997, image: 'https://static.carrefour.es/hd_510x_/img_pim_food/306253_00_1.jpg' },
+  'vina-sol': { id: 'b26', name: 'Viña Sol', country: 'Spain', region: 'Catalonia', founded: 1996, image: 'https://static.carrefour.es/hd_510x_/img_pim_food/000221_00_1.jpg' },
+  'penascal': { id: 'b27', name: 'Peñascal', country: 'Spain', region: 'Multi-region', founded: 1992, image: 'https://static.carrefour.es/hd_510x_/img_pim_food/000234_00_1.jpg' },
+  'mateus': { id: 'b28', name: 'Mateus', country: 'Portugal', region: 'Douro Valley', founded: 1942, image: 'https://static.carrefour.es/hd_510x_/img_pim_food/000233_00_1.jpg' },
+  'vina-albali': { id: 'b29', name: 'Viña Albali', country: 'Spain', region: 'Navarre', founded: 1972, image: 'https://static.carrefour.es/hd_510x_/img_pim_food/000239_00_1.jpg' },
+  'riunite': { id: 'b30', name: 'Riunite', country: 'Italy', region: 'Emilia-Romagna', founded: 1962, image: 'https://static.carrefour.es/hd_510x_/img_pim_food/000291_00_1.jpg' },
+};
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export const regions: { [key: string]: any } = {
+  'ribera-duero': { id: 'r1', name: 'Ribera del Duero', country: 'Spain', image: 'https://static.carrefour.es/hd_510x_/img_pim_food/000197_00_1.jpg' },
+  'rioja': { id: 'r2', name: 'Rioja', country: 'Spain', image: 'https://static.carrefour.es/hd_510x_/img_pim_food/000083_00_1.jpg' },
+  'valdepenias': { id: 'r3', name: 'Valdepeñas', country: 'Spain', image: 'https://static.carrefour.es/hd_510x_/img_pim_food/000157_00_1.jpg' },
+  'rueda': { id: 'r4', name: 'Rueda', country: 'Spain', image: 'https://static.carrefour.es/hd_510x_/img_pim_food/000098_00_1.jpg' },
+  'rias-baixas': { id: 'r5', name: 'Rías Baixas', country: 'Spain', image: 'https://static.carrefour.es/hd_510x_/img_pim_food/000152_00_1.jpg' },
+  'penedes': { id: 'r6', name: 'Penedès', country: 'Spain', image: 'https://static.carrefour.es/hd_510x_/img_pim_food/000221_00_1.jpg' },
+  'toro': { id: 'r7', name: 'Toro', country: 'Spain', image: 'https://static.carrefour.es/hd_510x_/img_pim_food/217505_00_1.jpg' },
+  'navarre': { id: 'r8', name: 'Navarre', country: 'Spain', image: 'https://static.carrefour.es/hd_510x_/img_pim_food/000239_00_1.jpg' },
+};
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export const grapes: { [key: string]: any } = {
+  'tempranillo': { id: 'g1', name: 'Tempranillo', image: 'https://static.carrefour.es/hd_510x_/img_pim_food/000083_00_1.jpg' },
+  'verdejo': { id: 'g2', name: 'Verdejo', image: 'https://static.carrefour.es/hd_510x_/img_pim_food/000098_00_1.jpg' },
+  'albarino': { id: 'g3', name: 'Albariño', image: 'https://static.carrefour.es/hd_510x_/img_pim_food/000152_00_1.jpg' },
+  'garnacha': { id: 'g4', name: 'Garnacha', image: 'https://static.carrefour.es/hd_510x_/img_pim_food/000234_00_1.jpg' },
+  'xarel-lo': { id: 'g5', name: 'Xarel·lo', image: 'https://static.carrefour.es/hd_510x_/img_pim_food/000221_00_1.jpg' },
+};
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export const category: any = {
+  id: 'cat1', name: 'Wine', slug: 'wine', image: 'https://static.carrefour.es/hd_510x_/img_pim_food/000083_00_1.jpg',
+};
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export const wineData: any[] = [
+  { idx: 1, name: 'Vino tinto crianza tempranillo 3 Reinos D.O. Ribera del Duero 75 cl.', price: 7.85, image: 'https://static.carrefour.es/hd_510x_/img_pim_food/236233_00_1.jpg', type: 'tinto', bodega: 'tres-reinos', region: 'ribera-duero', grapes: ['tempranillo'], vintage: 2021, volume: 750, alcohol: 13.5, acidity: 3.5 },
+  { idx: 2, name: 'Vino tinto roble tempranillo Tres Reinos D.O. Ribera del Duero 75 cl.', price: 4.89, image: 'https://static.carrefour.es/hd_510x_/img_pim_food/236225_00_1.jpg', type: 'tinto', bodega: 'tres-reinos', region: 'ribera-duero', grapes: ['tempranillo'], vintage: 2023, volume: 750, alcohol: 13.5, acidity: 3.6 },
+  { idx: 3, name: 'Vino tinto joven tempranillo Carrefour Vendimia Seleccionada V.T. 1 l.', price: 1.20, image: 'https://static.carrefour.es/hd_510x_/img_pim_food/513382_00_1.jpg', type: 'tinto', bodega: 'carrefour', region: 'ribera-duero', grapes: ['tempranillo'], vintage: 2023, volume: 1000, alcohol: 13.5, acidity: 3.7 },
+  { idx: 4, name: 'Vino tinto crianza tempranillo Dehesas del Rey D.O. Ribera del Duero 75 cl.', price: 7.89, image: 'https://static.carrefour.es/hd_510x_/img_pim_food/325547_00_1.jpg', type: 'tinto', bodega: 'dehesas-del-rey', region: 'ribera-duero', grapes: ['tempranillo'], vintage: 2021, volume: 750, alcohol: 13.5, acidity: 3.5 },
+  { idx: 5, name: 'Vino tinto crianza Carrizal D.O.Ca Rioja 75 cl.', price: 2.99, image: 'https://static.carrefour.es/hd_510x_/img_pim_food/510627_00_1.jpg', type: 'tinto', bodega: 'carrizal', region: 'rioja', grapes: ['tempranillo'], vintage: 2021, volume: 750, alcohol: 13.5, acidity: 3.6 },
+  { idx: 6, name: 'Vino tinto reserva tempranillo Marqués de la Concordia D.O.Ca Rioja 75 cl.', price: 5.99, image: 'https://static.carrefour.es/hd_510x_/img_pim_food/248714_00_1.jpg', type: 'tinto', bodega: 'marques-de-riscal', region: 'rioja', grapes: ['tempranillo'], vintage: 2019, volume: 750, alcohol: 13.5, acidity: 3.5, featured: true },
+  { idx: 7, name: 'Vino tinto crianza tempranillo Marqués de Riscal D.O.Ca Rioja 75 cl.', price: 9.99, image: 'https://static.carrefour.es/hd_510x_/img_pim_food/000083_00_1.jpg', type: 'tinto', bodega: 'marques-de-riscal', region: 'rioja', grapes: ['tempranillo'], vintage: 2021, volume: 750, alcohol: 13.5, acidity: 3.5, featured: true },
+  { idx: 8, name: 'Vino tinto crianza Montecruz D.O. Valdepeñas 75 cl.', price: 1.79, image: 'https://static.carrefour.es/hd_510x_/img_pim_food/000157_00_1.jpg', type: 'tinto', bodega: 'montecruz', region: 'valdepenias', grapes: ['tempranillo'], vintage: 2021, volume: 750, alcohol: 13.0, acidity: 3.6 },
+  { idx: 9, name: 'Vino tinto reserva tempranillo Marqués de Riscal D.O.Ca Rioja 75 cl.', price: 14.49, image: 'https://static.carrefour.es/hd_510x_/img_pim_food/000093_00_1.jpg', type: 'tinto', bodega: 'marques-de-riscal', region: 'rioja', grapes: ['tempranillo'], vintage: 2019, volume: 750, alcohol: 13.5, acidity: 3.4, featured: true },
+  { idx: 10, name: 'Vino tinto reserva Antaño D.O.Ca Rioja 75 cl.', price: 4.99, image: 'https://static.carrefour.es/hd_510x_/img_pim_food/000075_00_1.jpg', type: 'tinto', bodega: 'antaño', region: 'rioja', grapes: ['tempranillo'], vintage: 2019, volume: 750, alcohol: 13.5, acidity: 3.5 },
+  { idx: 11, name: 'Vino tinto crianza tempranillo Glorioso D.O.Ca Rioja 75 cl.', price: 4.75, image: 'https://static.carrefour.es/hd_510x_/img_pim_food/000060_00_1.jpg', type: 'tinto', bodega: 'gloria', region: 'rioja', grapes: ['tempranillo'], vintage: 2021, volume: 750, alcohol: 13.5, acidity: 3.6 },
+  { idx: 12, name: 'Vino tinto joven D.O.Ca Rioja Corazón de Laguardia 75 cl.', price: 3.69, image: 'https://static.carrefour.es/hd_510x_/img_pim_food/337291_00_1.jpg', type: 'tinto', bodega: 'corazon-laguardia', region: 'rioja', grapes: ['tempranillo'], vintage: 2023, volume: 750, alcohol: 13.5, acidity: 3.7 },
+  { idx: 13, name: 'Vino tinto reserva D.O. Ribera del Duero Protos 75 cl.', price: 16.89, image: 'https://static.carrefour.es/hd_510x_/img_pim_food/000197_00_1.jpg', type: 'tinto', bodega: 'protos', region: 'ribera-duero', grapes: ['tempranillo'], vintage: 2019, volume: 750, alcohol: 13.5, acidity: 3.4, featured: true },
+  { idx: 14, name: 'Vino tinto crianza D.O. Ribera del Duero Protos 75 cl.', price: 11.75, image: 'https://static.carrefour.es/hd_510x_/img_pim_food/000194_00_1.jpg', type: 'tinto', bodega: 'protos', region: 'ribera-duero', grapes: ['tempranillo'], vintage: 2021, volume: 750, alcohol: 13.5, acidity: 3.5, featured: true },
+  { idx: 15, name: 'Vino tinto roble D.O. Ribera del Duero Protos 75 cl.', price: 7.89, image: 'https://static.carrefour.es/hd_510x_/img_pim_food/000189_00_1.jpg', type: 'tinto', bodega: 'protos', region: 'ribera-duero', grapes: ['tempranillo'], vintage: 2023, volume: 750, alcohol: 13.5, acidity: 3.6 },
+  { idx: 16, name: 'Vino tinto gran reserva Marqués de Riscal D.O.Ca Rioja 75 cl.', price: 29.85, image: 'https://static.carrefour.es/hd_510x_/img_pim_food/000096_00_1.jpg', type: 'tinto', bodega: 'marques-de-riscal', region: 'rioja', grapes: ['tempranillo'], vintage: 2016, volume: 750, alcohol: 13.5, acidity: 3.3, featured: true },
+  { idx: 17, name: 'Vino tinto crianza D.O.Ca Rioja Coto de Imaz 75 cl.', price: 5.99, image: 'https://static.carrefour.es/hd_510x_/img_pim_food/000039_00_1.jpg', type: 'tinto', bodega: 'coto-de-imaz', region: 'rioja', grapes: ['tempranillo'], vintage: 2021, volume: 750, alcohol: 13.5, acidity: 3.5 },
+  { idx: 18, name: 'Vino tinto crianza Ramón Bilbao D.O.Ca Rioja 75 cl.', price: 7.55, image: 'https://static.carrefour.es/hd_510x_/img_pim_food/000068_00_1.jpg', type: 'tinto', bodega: 'ramon-bilbao', region: 'rioja', grapes: ['tempranillo'], vintage: 2021, volume: 750, alcohol: 13.5, acidity: 3.5 },
+  { idx: 19, name: 'Vino tinto reserva Coto de Imaz D.O.Ca Rioja 75 cl.', price: 9.25, image: 'https://static.carrefour.es/hd_510x_/img_pim_food/000040_00_1.jpg', type: 'tinto', bodega: 'coto-de-imaz', region: 'rioja', grapes: ['tempranillo'], vintage: 2019, volume: 750, alcohol: 13.5, acidity: 3.4, featured: true },
+  { idx: 20, name: 'Vino tinto crianza Cune D.O.Ca Rioja 75 cl.', price: 5.79, image: 'https://static.carrefour.es/hd_510x_/img_pim_food/000044_00_1.jpg', type: 'tinto', bodega: 'cune', region: 'rioja', grapes: ['tempranillo'], vintage: 2021, volume: 750, alcohol: 13.5, acidity: 3.5 },
+  { idx: 21, name: 'Vino tinto reserva Cune D.O.Ca Rioja 75 cl.', price: 8.69, image: 'https://static.carrefour.es/hd_510x_/img_pim_food/000050_00_1.jpg', type: 'tinto', bodega: 'cune', region: 'rioja', grapes: ['tempranillo'], vintage: 2019, volume: 750, alcohol: 13.5, acidity: 3.4, featured: true },
+  { idx: 22, name: 'Vino tinto roble D.O. Ribera del Duero Celeste 75 cl.', price: 8.49, image: 'https://static.carrefour.es/hd_510x_/img_pim_food/306379_00_1.jpg', type: 'tinto', bodega: 'celeste', region: 'ribera-duero', grapes: ['tempranillo'], vintage: 2023, volume: 750, alcohol: 13.5, acidity: 3.6, featured: true },
+  { idx: 23, name: 'Vino tinto crianza D.O. Ribera del Duero Celeste 75 cl.', price: 11.99, image: 'https://static.carrefour.es/hd_510x_/img_pim_food/252253_00_1.jpg', type: 'tinto', bodega: 'celeste', region: 'ribera-duero', grapes: ['tempranillo'], vintage: 2021, volume: 750, alcohol: 13.5, acidity: 3.5, featured: true },
+  { idx: 24, name: 'Vino tinto crianza D.O.Ca Rioja Viña Pomal 75 cl.', price: 6.99, image: 'https://static.carrefour.es/hd_510x_/img_pim_food/000111_00_1.jpg', type: 'tinto', bodega: 'vina-pomal', region: 'rioja', grapes: ['tempranillo'], vintage: 2021, volume: 750, alcohol: 13.5, acidity: 3.5 },
+  { idx: 25, name: 'Vino tinto crianza Beronia D.O.Ca Rioja 75 cl.', price: 7.49, image: 'https://static.carrefour.es/hd_510x_/img_pim_food/000020_00_1.jpg', type: 'tinto', bodega: 'beronia', region: 'rioja', grapes: ['tempranillo'], vintage: 2021, volume: 750, alcohol: 13.5, acidity: 3.5 },
+  { idx: 26, name: 'Vino tinto crianza D.O.Ca Rioja Marqués de Cáceres 75 cl.', price: 6.49, image: 'https://static.carrefour.es/hd_510x_/img_pim_food/000086_00_1.jpg', type: 'tinto', bodega: 'marques-de-caceres', region: 'rioja', grapes: ['tempranillo'], vintage: 2021, volume: 750, alcohol: 13.5, acidity: 3.5 },
+  { idx: 27, name: 'Vino tinto reserva D.O.Ca Rioja Marqués de Cáceres 75 cl.', price: 10.49, image: 'https://static.carrefour.es/hd_510x_/img_pim_food/000091_00_1.jpg', type: 'tinto', bodega: 'marques-de-caceres', region: 'rioja', grapes: ['tempranillo'], vintage: 2019, volume: 750, alcohol: 13.5, acidity: 3.4, featured: true },
+  { idx: 28, name: 'Vino tinto reserva Beronia D.O.Ca Rioja 75 cl.', price: 9.99, image: 'https://static.carrefour.es/hd_510x_/img_pim_food/000024_00_1.jpg', type: 'tinto', bodega: 'beronia', region: 'rioja', grapes: ['tempranillo'], vintage: 2019, volume: 750, alcohol: 13.5, acidity: 3.4, featured: true },
+  { idx: 29, name: 'Vino tinto gran reserva Beronia D.O.Ca Rioja 75 cl.', price: 14.49, image: 'https://static.carrefour.es/hd_510x_/img_pim_food/200038_00_1.jpg', type: 'tinto', bodega: 'beronia', region: 'rioja', grapes: ['tempranillo'], vintage: 2016, volume: 750, alcohol: 13.5, acidity: 3.3, featured: true },
+  { idx: 30, name: 'Vino tinto crianza D.O.Ca Rioja Viña Albina 75 cl.', price: 5.79, image: 'https://static.carrefour.es/hd_510x_/img_pim_food/000105_00_1.jpg', type: 'tinto', bodega: 'vina-albina', region: 'rioja', grapes: ['tempranillo'], vintage: 2021, volume: 750, alcohol: 13.5, acidity: 3.5 },
+  { idx: 31, name: 'Vino tinto reserva D.O.Ca Rioja Viña Albina 75 cl.', price: 8.49, image: 'https://static.carrefour.es/hd_510x_/img_pim_food/000106_00_1.jpg', type: 'tinto', bodega: 'vina-albina', region: 'rioja', grapes: ['tempranillo'], vintage: 2019, volume: 750, alcohol: 13.5, acidity: 3.4, featured: true },
+  { idx: 32, name: 'Vino tinto roble D.O. Toro Cyan 75 cl.', price: 6.99, image: 'https://static.carrefour.es/hd_510x_/img_pim_food/217505_00_1.jpg', type: 'tinto', bodega: 'cyan', region: 'toro', grapes: ['tempranillo'], vintage: 2023, volume: 750, alcohol: 13.5, acidity: 3.6 },
+  { idx: 33, name: 'Vino tinto reserva D.O. Ribera del Duero Pago de Carraovejas 75 cl.', price: 44.90, image: 'https://static.carrefour.es/hd_510x_/img_pim_food/000173_00_1.jpg', type: 'tinto', bodega: 'pago-carraovejas', region: 'ribera-duero', grapes: ['tempranillo'], vintage: 2019, volume: 750, alcohol: 13.5, acidity: 3.3, featured: true },
+  { idx: 34, name: 'Vino tinto crianza D.O.Ca Rioja Faustino VII 75 cl.', price: 3.99, image: 'https://static.carrefour.es/hd_510x_/img_pim_food/000054_00_1.jpg', type: 'tinto', bodega: 'faustino', region: 'rioja', grapes: ['tempranillo'], vintage: 2021, volume: 750, alcohol: 13.5, acidity: 3.6 },
+  { idx: 35, name: 'Vino tinto reserva Faustino V D.O.Ca Rioja 75 cl.', price: 8.55, image: 'https://static.carrefour.es/hd_510x_/img_pim_food/000055_00_1.jpg', type: 'tinto', bodega: 'faustino', region: 'rioja', grapes: ['tempranillo'], vintage: 2019, volume: 750, alcohol: 13.5, acidity: 3.4, featured: true },
+  { idx: 36, name: 'Vino tinto gran reserva Faustino I D.O.Ca Rioja 75 cl.', price: 19.85, image: 'https://static.carrefour.es/hd_510x_/img_pim_food/000056_00_1.jpg', type: 'tinto', bodega: 'faustino', region: 'rioja', grapes: ['tempranillo'], vintage: 2016, volume: 750, alcohol: 13.5, acidity: 3.3, featured: true },
+  { idx: 37, name: 'Vino blanco Carrefour Classic brik 1 l.', price: 0.99, image: 'https://static.carrefour.es/hd_510x_/img_pim_food/513373_00_1.jpg', type: 'blanco', bodega: 'carrefour', region: 'rioja', grapes: ['verdejo'], vintage: 2023, volume: 1000, alcohol: 12.5, acidity: 3.8 },
+  { idx: 38, name: 'Vino blanco verdejo Dama del Lago D.O. Rueda 75 cl.', price: 3.89, image: 'https://static.carrefour.es/hd_510x_/img_pim_food/484782_00_1.jpg', type: 'blanco', bodega: 'dama-lago', region: 'rueda', grapes: ['verdejo'], vintage: 2023, volume: 750, alcohol: 12.5, acidity: 3.8 },
+  { idx: 39, name: 'Vino blanco verdejo Estilete D.O. Rueda 75 cl.', price: 2.55, image: 'https://static.carrefour.es/hd_510x_/img_pim_food/871997_00_1.jpg', type: 'blanco', bodega: 'estilete', region: 'rueda', grapes: ['verdejo'], vintage: 2023, volume: 750, alcohol: 12.5, acidity: 3.8 },
+  { idx: 40, name: 'Vino blanco verdejo D.O. Rueda Marqués de Riscal 75 cl.', price: 6.99, image: 'https://static.carrefour.es/hd_510x_/img_pim_food/000098_00_1.jpg', type: 'blanco', bodega: 'marques-de-riscal', region: 'rueda', grapes: ['verdejo'], vintage: 2023, volume: 750, alcohol: 12.5, acidity: 3.7, featured: true },
+  { idx: 41, name: 'Vino blanco albariño D.O. Rías Baixas Martín Códax 75 cl.', price: 8.99, image: 'https://static.carrefour.es/hd_510x_/img_pim_food/000152_00_1.jpg', type: 'blanco', bodega: 'martín-códax', region: 'rias-baixas', grapes: ['albarino'], vintage: 2023, volume: 750, alcohol: 12.5, acidity: 3.5, featured: true },
+  { idx: 42, name: 'Vino blanco verdejo D.O. Rueda José Pariente 75 cl.', price: 8.39, image: 'https://static.carrefour.es/hd_510x_/img_pim_food/306253_00_1.jpg', type: 'blanco', bodega: 'jose-pariente', region: 'rueda', grapes: ['verdejo'], vintage: 2023, volume: 750, alcohol: 12.5, acidity: 3.7, featured: true },
+  { idx: 43, name: 'Vino blanco semidulce D.O. Penedès Viña Sol 75 cl.', price: 4.45, image: 'https://static.carrefour.es/hd_510x_/img_pim_food/000221_00_1.jpg', type: 'blanco', bodega: 'vina-sol', region: 'penedes', grapes: ['xarel-lo'], vintage: 2023, volume: 750, alcohol: 12.0, acidity: 3.6 },
+  { idx: 44, name: 'Vino blanco verdejo Protos D.O. Rueda 75 cl.', price: 6.99, image: 'https://static.carrefour.es/hd_510x_/img_pim_food/267505_00_1.jpg', type: 'blanco', bodega: 'protos', region: 'rueda', grapes: ['verdejo'], vintage: 2023, volume: 750, alcohol: 12.5, acidity: 3.7 },
+  { idx: 45, name: 'Vino rosado Carrefour Classic brik 1 l.', price: 1.31, image: 'https://static.carrefour.es/hd_510x_/img_pim_food/513381_00_1.jpg', type: 'rosado', bodega: 'carrefour', region: 'rioja', grapes: ['garnacha'], vintage: 2023, volume: 1000, alcohol: 12.0, acidity: 3.8 },
+  { idx: 46, name: 'Vino rosado joven Peñascal 75 cl.', price: 4.25, image: 'https://static.carrefour.es/hd_510x_/img_pim_food/000234_00_1.jpg', type: 'rosado', bodega: 'penascal', region: 'rioja', grapes: ['garnacha'], vintage: 2023, volume: 750, alcohol: 12.0, acidity: 3.8 },
+  { idx: 47, name: 'Vino rosado Mateus 75 cl.', price: 4.99, image: 'https://static.carrefour.es/hd_510x_/img_pim_food/000233_00_1.jpg', type: 'rosado', bodega: 'mateus', region: 'rioja', grapes: ['garnacha'], vintage: 2023, volume: 750, alcohol: 12.0, acidity: 3.7, featured: true },
+  { idx: 48, name: 'Vino rosado D.O. Navarra Viña Albali 75 cl.', price: 3.25, image: 'https://static.carrefour.es/hd_510x_/img_pim_food/000239_00_1.jpg', type: 'rosado', bodega: 'vina-albali', region: 'navarre', grapes: ['garnacha'], vintage: 2023, volume: 750, alcohol: 12.0, acidity: 3.8 },
+  { idx: 49, name: 'Vino rosado Lambrusco dell\'Emilia Riunite 75 cl.', price: 3.49, image: 'https://static.carrefour.es/hd_510x_/img_pim_food/000291_00_1.jpg', type: 'rosado', bodega: 'riunite', region: 'rioja', grapes: ['garnacha'], vintage: 2023, volume: 750, alcohol: 12.0, acidity: 3.7 },
+  { idx: 50, name: 'Vino rosado Carrefour pack 3 brik 20 cl.', price: 1.55, image: 'https://static.carrefour.es/hd_510x_/img_pim_food/004062_00_1.jpg', type: 'rosado', bodega: 'carrefour', region: 'rioja', grapes: ['garnacha'], vintage: 2023, volume: 200, alcohol: 12.0, acidity: 3.9 },
+];
+
+export function buildProducts() {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  return wineData.map((w: any) => ({
+    id: `car-${w.idx}`,
+    name: w.name,
+    slug: w.name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, ''),
+    description: w.name,
+    price: w.price,
+    image: w.image,
+    sku: `CAR-${String(w.idx).padStart(3, '0')}`,
+    stock: w.featured ? 50 : 100,
+    featured: w.featured || false,
+    bodegaId: bodegas[w.bodega].id,
+    bodega: { ...bodegas[w.bodega], description: bodegas[w.bodega].name, createdAt: dt, updatedAt: dt },
+    regionId: regions[w.region].id,
+    region: { ...regions[w.region], description: regions[w.region].name, createdAt: dt, updatedAt: dt },
+    categoryId: category.id,
+    category: { ...category, description: 'Vinos', createdAt: dt, updatedAt: dt },
+    grapeIds: w.grapes.map((g: string) => grapes[g].id),
+    grapes: w.grapes.map((g: string) => ({ ...grapes[g], description: grapes[g].name, createdAt: dt, updatedAt: dt })),
+    wineType: w.type,
+    vintage: w.vintage,
+    volume: w.volume,
+    alcohol: w.alcohol,
+    acidity: w.acidity,
+    ratings: [],
+    reviews: [],
+    createdAt: new Date(),
+    updatedAt: new Date(),
+  })) as Product[];
+}
+
+export const CARREFOUR_PRODUCTS = buildProducts();
+
+export function getProductBySlug(slug: string): Product | undefined {
+  return CARREFOUR_PRODUCTS.find(product => product.slug === slug);
+}
+
+interface ExtendedProductDetail extends Product {
+  description: string;
+  sensoryProfile: {
+    color: string;
+    aroma: string;
+    palate: string;
+  };
+  tastingNotes: string[];
+  servingTemperature: {
+    min: number;
+    max: number;
+  };
+  pairings: string[];
+  winemaking: {
+    aging: string;
+    barrelType?: string;
+    productionMethod: string;
+  };
+  vineyard: {
+    terroir: string;
+    climate: string;
+    soilType: string;
+  };
+  format: {
+    bottle: string;
+    closure: string;
+  };
+}
+
+export function getProductDetailData(slug: string): ExtendedProductDetail | undefined {
+  const product = getProductBySlug(slug);
+  if (!product) return undefined;
+
+  const isRed = product.wineType === 'tinto';
+  const isWhite = product.wineType === 'blanco';
+  const _isRose = product.wineType === 'rosado';
+
+  // Generate description based on wine characteristics
+  const bodegaName = product.bodega?.name || 'Spanish Bodega';
+  const regionName = product.region?.name || 'Spanish Wine Region';
+  const vintage = product.vintage || new Date().getFullYear();
+
+  const description = `${product.name}. A ${
+    isRed ? 'full-bodied red wine' : isWhite ? 'crisp white wine' : _isRose ? 'refreshing rosé wine' : 'distinctive wine'
+  } from ${bodegaName} in the renowned ${regionName} region. Vintage ${vintage}. With ${product.alcohol}% alcohol and acidity of ${product.acidity}, this wine offers excellent balance and character. Volume: ${product.volume}ml.`;
+
+  // Sensory profile based on wine type
+  const sensoryProfile = isRed
+    ? {
+        color: 'Deep ruby with garnet hues',
+        aroma: 'Rich notes of dark fruits, leather, and spice',
+        palate: 'Full-bodied with structured tannins and lingering finish'
+      }
+    : isWhite
+    ? {
+        color: 'Pale straw yellow with golden reflections',
+        aroma: 'Fresh citrus, green apple, and mineral notes',
+        palate: 'Crisp and refreshing with vibrant acidity'
+      }
+    : {
+        color: 'Delicate salmon pink',
+        aroma: 'Fruity with strawberry and citrus notes',
+        palate: 'Light and refreshing with subtle sweetness'
+      };
+
+  // Tasting notes based on wine type and region
+  const tastingNotes = isRed
+    ? ['Dark cherry', 'Plum', 'Leather', 'Vanilla', 'Spice']
+    : isWhite
+    ? ['Citrus', 'Green apple', 'Mineral', 'Floral', 'Stone fruit']
+    : ['Strawberry', 'Watermelon', 'Citrus', 'Floral', 'Subtle sweetness'];
+
+  // Serving temperature based on wine type
+  const servingTemperature = isRed
+    ? { min: 16, max: 18 }
+    : isWhite
+    ? { min: 8, max: 12 }
+    : { min: 10, max: 13 };
+
+  // Food pairings based on wine type
+  const pairings = isRed
+    ? [
+        'Grilled beef and lamb',
+        'Game meats and venison',
+        'Cured meats and charcuterie',
+        'Aged cheese',
+        'Hearty stews and casseroles'
+      ]
+    : isWhite
+    ? [
+        'Fresh seafood and shellfish',
+        'Grilled fish',
+        'Chicken and light poultry',
+        'Vegetable dishes',
+        'Soft cheese and goat cheese'
+      ]
+    : [
+        'Salmon and lighter fish',
+        'Shellfish',
+        'Pasta with light sauces',
+        'Summer salads',
+        'Tapas and cured meats'
+      ];
+
+  // Winemaking information based on wine characteristics
+  const winemaking = product.vintage >= 2021
+    ? {
+        aging: 'Aged in oak for 12-18 months (if crianza/reserva)',
+        barrelType: 'American oak',
+        productionMethod: 'Traditional fermentation'
+      }
+    : {
+        aging: 'Aged in oak for 18-24+ months (premium aging)',
+        barrelType: 'French and American oak',
+        productionMethod: 'Traditional fermentation with extended aging'
+      };
+
+  // Vineyard info based on region
+  const regionData: { [key: string]: { terroir: string; climate: string; soilType: string } } = {
+    'ribera-duero': {
+      terroir: 'Continental plateau with altitude variation',
+      climate: 'Continental with extreme temperature variations',
+      soilType: 'Rocky, clay-limestone soils'
+    },
+    'rioja': {
+      terroir: 'Mix of alluvial plains and hillsides',
+      climate: 'Atlantic influence with continental elements',
+      soilType: 'Alluvial, calcareous, and clayey soils'
+    },
+    'rueda': {
+      terroir: 'Flat terrain at moderate altitude',
+      climate: 'Continental with cold winters',
+      soilType: 'Limestone and sandy soils'
+    },
+    'rias-baixas': {
+      terroir: 'Coastal region with river valleys',
+      climate: 'Atlantic maritime climate',
+      soilType: 'Granite-based with acidic characteristics'
+    },
+    'penedes': {
+      terroir: 'Mountainous region with diverse elevations',
+      climate: 'Mediterranean with Atlantic influence',
+      soilType: 'Limestone, clay, and alluvial soils'
+    },
+    'toro': {
+      terroir: 'High plateau in continental zone',
+      climate: 'Harsh continental climate',
+      soilType: 'Rocky and limestone-rich soils'
+    },
+    'navarre': {
+      terroir: 'Pyrenean foothills and plains',
+      climate: 'Transitional between Atlantic and Continental',
+      soilType: 'Diverse soils with limestone'
+    },
+    'valdepenias': {
+      terroir: 'Rolling hills and plains',
+      climate: 'Hot continental climate',
+      soilType: 'Sandy and alluvial soils'
+    }
+  };
+
+  const regionKey = wineData.find(w => w.idx === parseInt(product.id.split('-')[1]))?.region || 'rioja';
+  const vineyard = regionData[regionKey] || regionData['rioja'];
+
+  // Format information
+  const format = {
+    bottle: `${product.volume}ml standard bottle`,
+    closure: 'Cork'
+  };
+
+  return {
+    ...product,
+    description,
+    sensoryProfile,
+    tastingNotes,
+    servingTemperature,
+    pairings,
+    winemaking,
+    vineyard,
+    format
+  } as ExtendedProductDetail;
+}
