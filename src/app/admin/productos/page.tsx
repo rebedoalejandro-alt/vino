@@ -18,7 +18,7 @@ export default function ProductsPage() {
     }
   }, [router]);
 
-  const categories = ['', 'Tinto', 'Blanco', 'Rosado', 'Espumoso'];
+  const categories = ['', 'Tinto', 'Blanco', 'Rosado'];
 
   const filteredProducts = products.filter((product) => {
     const matchesSearch =
@@ -29,7 +29,7 @@ export default function ProductsPage() {
   });
 
   const handleDelete = (id: string) => {
-    if (confirm('¿Estás seguro de que deseas eliminar este producto?')) {
+    if (confirm('Â¿EstÃ¡s seguro de que deseas eliminar este producto?')) {
       setProducts(products.filter((p) => p.id !== id));
     }
   };
@@ -39,12 +39,12 @@ export default function ProductsPage() {
       {/* Page Header */}
       <div className="flex items-center justify-between mb-8">
         <div>
-          <h1 className="text-3xl font-bold text-white">Gestión de Productos</h1>
+          <h1 className="text-3xl font-bold text-white">GestiÃ³n de Productos</h1>
           <p className="text-slate-400 mt-2">Total: {filteredProducts.length} productos</p>
         </div>
         <button className="flex items-center gap-2 px-4 py-2 bg-amber-600 hover:bg-amber-700 text-white rounded-lg font-medium transition-colors">
           <Plus className="w-5 h-5" />
-          Añadir Producto
+          AÃ±adir Producto
         </button>
       </div>
 
@@ -69,7 +69,7 @@ export default function ProductsPage() {
             onChange={(e) => setSelectedCategory(e.target.value)}
             className="w-full px-4 py-2 bg-slate-700 border border-slate-600 text-white rounded-lg focus:outline-none focus:border-amber-500"
           >
-            <option value="">Todas las Categorías</option>
+            <option value="">Todas las CategorÃ­as</option>
             {categories.slice(1).map((cat) => (
               <option key={cat} value={cat}>
                 {cat}
@@ -105,7 +105,7 @@ export default function ProductsPage() {
                   SKU
                 </th>
                 <th className="px-6 py-3 text-left text-xs font-medium text-slate-300 uppercase">
-                  Categoría
+                  CategorÃ­a
                 </th>
                 <th className="px-6 py-3 text-left text-xs font-medium text-slate-300 uppercase">
                   Precio
@@ -145,7 +145,7 @@ export default function ProductsPage() {
                       {product.category}
                     </td>
                     <td className="px-6 py-4 text-sm font-semibold text-white">
-                      €{product.price.toFixed(2)}
+                      â¬{product.price.toFixed(2)}
                     </td>
                     <td className="px-6 py-4">
                       <span
