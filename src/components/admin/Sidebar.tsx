@@ -8,12 +8,11 @@ import {
   Tag,
   ShoppingCart,
   Users,
-  Wine,
   LogOut,
 } from 'lucide-react';
 import { useAdminAuth } from '@/lib/admin-auth';
 
-export default function AdminSidebar() {
+export default function AdminSidebar({ onNavigate }: { onNavigate?: () => void }) {
   const pathname = usePathname();
   const { logout } = useAdminAuth();
 
@@ -33,7 +32,7 @@ export default function AdminSidebar() {
     },
     {
       href: '/admin/categorias',
-      label: 'Categorías',
+      label: 'CategorÃ­as',
       icon: Tag,
     },
     {
@@ -54,14 +53,15 @@ export default function AdminSidebar() {
   };
 
   return (
-    <aside className="w-64 bg-slate-900 border-r border-slate-700 flex flex-col">
+    <aside className="w-64 h-full bg-slate-900 border-r border-slate-700 flex flex-col">
       {/* Logo */}
       <div className="p-6 border-b border-slate-700">
-        <div className="flex items-center gap-3">
-          <Wine className="w-8 h-8 text-amber-500" />
-          <h1 className="text-xl font-bold text-white">Casa del Vino</h1>
-        </div>
-        <p className="text-xs text-slate-400 mt-1">Panel de Administración</p>
+        <img
+          src="/logo-white.svg"
+          alt="Casa del Vino"
+          className="h-10 w-auto"
+        />
+        <p className="text-xs text-slate-400 mt-2">Panel de AdministraciÃ³n</p>
       </div>
 
       {/* Navigation */}
@@ -74,6 +74,7 @@ export default function AdminSidebar() {
             <Link
               key={item.href}
               href={item.href}
+              onClick={onNavigate}
               className={`flex items-center gap-3 px-4 py-3 rounded-lg transition-colors ${
                 active
                   ? 'bg-amber-600 text-white'
@@ -94,7 +95,7 @@ export default function AdminSidebar() {
           className="w-full flex items-center gap-3 px-4 py-3 rounded-lg text-slate-300 hover:bg-slate-800 transition-colors text-sm font-medium"
         >
           <LogOut className="w-5 h-5" />
-          <span>Cerrar sesión</span>
+          <span>Cerrar sesiÃ³n</span>
         </button>
       </div>
     </aside>
