@@ -20,7 +20,7 @@ export default function Header() {
       {/* Top Info Bar */}
       <div className="bg-gray-100 text-center py-2">
         <p className="text-xs text-gray-600 font-medium">
-          EnvÃ­o gratuito a partir de 150â¬
+          EnvÃ­o gratuito a partir de 150Ã¢ÂÂ¬
         </p>
       </div>
 
