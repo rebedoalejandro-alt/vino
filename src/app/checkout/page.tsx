@@ -1,11 +1,12 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import Link from 'next/link';
 import { CheckCircle, MapPin, CreditCard } from 'lucide-react';
 import { useCart } from '@/hooks/useCart';
 import { Button } from '@/components/ui/Button';
 import { formatPrice } from '@/lib/utils';
+import { saveOrder } from '@/lib/orders-store';
 
 type CheckoutStep = 1 | 2 | 3 | 4;
 type PaymentMethod = 'card' | 'paypal' | 'transfer';
@@ -39,7 +40,8 @@ interface PaymentForm {
 }
 
 export default function CheckoutPage() {
-  const { items, getSubtotal, getShippingCost, getTax, getTotalWithShipping } = useCart();
+  const { items, getSubtotal, getShippingCost, getTax, getTotalWithShipping, clearCart } = useCart();
+  const savedItemsRef = useRef(items);
   const [currentStep, setCurrentStep] = useState<CheckoutStep>(1);
   const [authType, setAuthType] = useState<'login' | 'register' | 'guest'>('guest');
 
@@ -71,7 +73,8 @@ export default function CheckoutPage() {
     cardCVC: '',
   });
 
-  const [orderNumber] = useState('CDV-2024-' + Math.random().toString(36).substr(2, 9).toUpperCase());
+  const [orderNumber, setOrderNumber] = useState('');
+  const [isProcessing, setIsProcessing] = useState(false);
 
   const subtotal = getSubtotal();
   const shippingCost = getShippingCost();
@@ -97,7 +100,35 @@ export default function CheckoutPage() {
   };
 
   const handleFinalizeOrder = () => {
-    // Simulate order processing
+    setIsProcessing(true);
+    // Save a snapshot of items before clearing
+    savedItemsRef.current = [...items];
+
+    const paymentMethodLabel =
+      payment.method === 'card' ? 'Tarjeta de crÃ©dito' :
+      payment.method === 'paypal' ? 'PayPal' : 'Transferencia bancaria';
+
+    const order = saveOrder({
+      customerName: `${shipping.firstName} ${shipping.lastName}`,
+      customerEmail: getCustomerEmail(),
+      customerPhone: shipping.phone,
+      shippingAddress: `${shipping.address}${shipping.apartment ? ', ' + shipping.apartment : ''}, ${shipping.postalCode} ${shipping.city}, ${shipping.country}`,
+      paymentMethod: paymentMethodLabel,
+      items: items.map(item => ({
+        productName: item.product.name,
+        productImage: item.product.image,
+        quantity: item.quantity,
+        price: item.price,
+      })),
+      subtotal,
+      shippingCost,
+      tax,
+      total,
+    });
+
+    setOrderNumber(order.orderNumber);
+    clearCart();
+    setIsProcessing(false);
     setCurrentStep(4);
   };
 
@@ -120,13 +151,16 @@ export default function CheckoutPage() {
     (payment.cardNumber && payment.cardExpiry && payment.cardCVC)
   );
 
-  if (items.length === 0) {
+  // Use saved items for display after cart is cleared (step 4)
+  const displayItems = currentStep === 4 ? savedItemsRef.current : items;
+
+  if (items.length === 0 && currentStep !== 4) {
     return (
       <div className="min-h-screen bg-white py-12 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
           <div className="text-center">
-            <h1 className="text-3xl font-bold text-black mb-4">Tu carrito está vacío</h1>
-            <p className="text-gray-600 mb-8">Añade productos a tu carrito antes de proceder al pago.</p>
+            <h1 className="text-3xl font-bold text-black mb-4">Tu carrito estÃ¡ vacÃ­o</h1>
+            <p className="text-gray-600 mb-8">AÃ±ade productos a tu carrito antes de proceder al pago.</p>
             <Link href="/vinos">
               <Button variant="primary" size="lg">
                 Volver a la tienda
@@ -145,10 +179,10 @@ export default function CheckoutPage() {
         <div className="mb-12">
           <div className="flex items-center justify-between">
             {[
-              { step: 1, label: 'Identificación' },
-              { step: 2, label: 'Envío' },
+              { step: 1, label: 'IdentificaciÃ³n' },
+              { step: 2, label: 'EnvÃ­o' },
               { step: 3, label: 'Pago' },
-              { step: 4, label: 'Confirmación' },
+              { step: 4, label: 'ConfirmaciÃ³n' },
             ].map((item, index, array) => (
               <div key={item.step} className="flex items-center flex-1">
                 <div
@@ -185,10 +219,10 @@ export default function CheckoutPage() {
           {/* Main Content */}
           <div className="lg:col-span-2">
             <div className="bg-white rounded-lg p-6 sm:p-8">
-              {/* Step 1: Identificación */}
+              {/* Step 1: IdentificaciÃ³n */}
               {currentStep === 1 && (
                 <div>
-                  <h2 className="text-2xl font-bold text-black mb-6">Identificación</h2>
+                  <h2 className="text-2xl font-bold text-black mb-6">IdentificaciÃ³n</h2>
 
                   {/* Login Section */}
                   <div className="mb-8 pb-8 border-b border-gray-200">
@@ -201,7 +235,7 @@ export default function CheckoutPage() {
                         onChange={(e) => setAuthType(e.target.value as 'login' | 'register' | 'guest')}
                         className="w-4 h-4"
                       />
-                      <span className="ml-3 font-semibold text-black">¿Ya tienes cuenta?</span>
+                      <span className="ml-3 font-semibold text-black">Â¿Ya tienes cuenta?</span>
                     </label>
 
                     {authType === 'login' && (
@@ -217,17 +251,17 @@ export default function CheckoutPage() {
                           />
                         </div>
                         <div>
-                          <label className="block text-sm font-semibold text-gray-700 mb-2">Contraseña</label>
+                          <label className="block text-sm font-semibold text-gray-700 mb-2">ContraseÃ±a</label>
                           <input
                             type="password"
                             value={identification.password}
                             onChange={(e) => setIdentification({ ...identification, password: e.target.value })}
-                            placeholder="••••••••"
+                            placeholder="â¢â¢â¢â¢â¢â¢â¢â¢"
                             className="w-full px-4 py-2 border border-gray-300 rounded-md outline-none focus:border-yellow-400 focus:ring-1 focus:ring-yellow-400"
                           />
                         </div>
                         <a href="#" className="text-sm text-yellow-500 hover:text-yellow-600">
-                          ¿Olvidaste tu contraseña?
+                          Â¿Olvidaste tu contraseÃ±a?
                         </a>
                       </div>
                     )}
@@ -260,22 +294,22 @@ export default function CheckoutPage() {
                           />
                         </div>
                         <div>
-                          <label className="block text-sm font-semibold text-gray-700 mb-2">Contraseña</label>
+                          <label className="block text-sm font-semibold text-gray-700 mb-2">ContraseÃ±a</label>
                           <input
                             type="password"
                             value={identification.registerPassword}
                             onChange={(e) => setIdentification({ ...identification, registerPassword: e.target.value })}
-                            placeholder="••••••••"
+                            placeholder="â¢â¢â¢â¢â¢â¢â¢â¢"
                             className="w-full px-4 py-2 border border-gray-300 rounded-md outline-none focus:border-yellow-400 focus:ring-1 focus:ring-yellow-400"
                           />
                         </div>
                         <div>
-                          <label className="block text-sm font-semibold text-gray-700 mb-2">Confirmar contraseña</label>
+                          <label className="block text-sm font-semibold text-gray-700 mb-2">Confirmar contraseÃ±a</label>
                           <input
                             type="password"
                             value={identification.registerConfirmPassword}
                             onChange={(e) => setIdentification({ ...identification, registerConfirmPassword: e.target.value })}
-                            placeholder="••••••••"
+                            placeholder="â¢â¢â¢â¢â¢â¢â¢â¢"
                             className="w-full px-4 py-2 border border-gray-300 rounded-md outline-none focus:border-yellow-400 focus:ring-1 focus:ring-yellow-400"
                           />
                         </div>
@@ -330,10 +364,10 @@ export default function CheckoutPage() {
                 </div>
               )}
 
-              {/* Step 2: Datos de envío */}
+              {/* Step 2: Datos de envÃ­o */}
               {currentStep === 2 && (
                 <div>
-                  <h2 className="text-2xl font-bold text-black mb-6">Datos de envío</h2>
+                  <h2 className="text-2xl font-bold text-black mb-6">Datos de envÃ­o</h2>
 
                   <div className="space-y-4">
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -353,14 +387,14 @@ export default function CheckoutPage() {
                           type="text"
                           value={shipping.lastName}
                           onChange={(e) => setShipping({ ...shipping, lastName: e.target.value })}
-                          placeholder="García López"
+                          placeholder="GarcÃ­a LÃ³pez"
                           className="w-full px-4 py-2 border border-gray-300 rounded-md outline-none focus:border-yellow-400 focus:ring-1 focus:ring-yellow-400"
                         />
                       </div>
                     </div>
 
                     <div>
-                      <label className="block text-sm font-semibold text-gray-700 mb-2">Dirección</label>
+                      <label className="block text-sm font-semibold text-gray-700 mb-2">DirecciÃ³n</label>
                       <input
                         type="text"
                         value={shipping.address}
@@ -393,7 +427,7 @@ export default function CheckoutPage() {
                         />
                       </div>
                       <div>
-                        <label className="block text-sm font-semibold text-gray-700 mb-2">Código postal</label>
+                        <label className="block text-sm font-semibold text-gray-700 mb-2">CÃ³digo postal</label>
                         <input
                           type="text"
                           value={shipping.postalCode}
@@ -406,13 +440,13 @@ export default function CheckoutPage() {
 
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                       <div>
-                        <label className="block text-sm font-semibold text-gray-700 mb-2">País</label>
+                        <label className="block text-sm font-semibold text-gray-700 mb-2">PaÃ­s</label>
                         <select
                           value={shipping.country}
                           onChange={(e) => setShipping({ ...shipping, country: e.target.value })}
                           className="w-full px-4 py-2 border border-gray-300 rounded-md outline-none focus:border-yellow-400 focus:ring-1 focus:ring-yellow-400"
                         >
-                          <option value="ES">España</option>
+                          <option value="ES">EspaÃ±a</option>
                           <option value="PT">Portugal</option>
                           <option value="FR">Francia</option>
                           <option value="IT">Italia</option>
@@ -420,7 +454,7 @@ export default function CheckoutPage() {
                         </select>
                       </div>
                       <div>
-                        <label className="block text-sm font-semibold text-gray-700 mb-2">Teléfono</label>
+                        <label className="block text-sm font-semibold text-gray-700 mb-2">TelÃ©fono</label>
                         <input
                           type="tel"
                           value={shipping.phone}
@@ -438,7 +472,7 @@ export default function CheckoutPage() {
                         onChange={(e) => setShipping({ ...shipping, saveAsDefault: e.target.checked })}
                         className="w-4 h-4"
                       />
-                      <span className="ml-3 text-sm text-gray-700">Guardar como dirección predeterminada</span>
+                      <span className="ml-3 text-sm text-gray-700">Guardar como direcciÃ³n predeterminada</span>
                     </label>
                   </div>
 
@@ -453,10 +487,10 @@ export default function CheckoutPage() {
                 </div>
               )}
 
-              {/* Step 3: Método de pago */}
+              {/* Step 3: MÃ©todo de pago */}
               {currentStep === 3 && (
                 <div>
-                  <h2 className="text-2xl font-bold text-black mb-6">Método de pago</h2>
+                  <h2 className="text-2xl font-bold text-black mb-6">MÃ©todo de pago</h2>
 
                   <div className="space-y-4">
                     {/* Tarjeta */}
@@ -473,7 +507,7 @@ export default function CheckoutPage() {
                         <div className="ml-3">
                           <div className="flex items-center gap-2">
                             <CreditCard className="h-5 w-5 text-yellow-500" />
-                            <span className="font-semibold text-black">Tarjeta de crédito/débito</span>
+                            <span className="font-semibold text-black">Tarjeta de crÃ©dito/dÃ©bito</span>
                           </div>
                           <p className="text-sm text-gray-500 mt-1">Visa, Mastercard, American Express</p>
                         </div>
@@ -482,7 +516,7 @@ export default function CheckoutPage() {
                       {payment.method === 'card' && (
                         <div className="ml-7 mt-4 space-y-4">
                           <div>
-                            <label className="block text-sm font-semibold text-gray-700 mb-2">Número de tarjeta</label>
+                            <label className="block text-sm font-semibold text-gray-700 mb-2">NÃºmero de tarjeta</label>
                             <input
                               type="text"
                               value={payment.cardNumber}
@@ -513,7 +547,7 @@ export default function CheckoutPage() {
                                 onChange={(e) => setPayment({ ...payment, cardCVC: e.target.value })}
                                 placeholder="123"
                                 maxLength={4}
-                                className="w-full px-4 py-2 border border-gray-300 rounded-md outline-none focus:border-yellow-400 focus:ring-1 focus:ring-yellow-400"
+                             className="w-full px-4 py-2 border border-gray-300 rounded-md outline-none focus:border-yellow-400 focus:ring-1 focus:ring-yellow-400"
                               />
                             </div>
                           </div>
@@ -534,7 +568,7 @@ export default function CheckoutPage() {
                         />
                         <div className="ml-3">
                           <span className="font-semibold text-black">PayPal</span>
-                          <p className="text-sm text-gray-500 mt-1">Paga de forma segura con tu cuenta PayPal</p>
+                             <p className="text-sm text-gray-500 mt-1">Paga de forma segura con tu cuenta PayPal</p>
                         </div>
                       </div>
                     </label>
@@ -562,37 +596,37 @@ export default function CheckoutPage() {
                     <Button variant="outline" onClick={handlePreviousStep}>
                       Anterior
                     </Button>
-                    <Button variant="primary" onClick={handleFinalizeOrder} disabled={!isStep3Valid}>
-                      Confirmar pedido
+                    <Button variant="primary" onClick={handleFinalizeOrder} disabled={!isStep3Valid || isProcessing}>
+                      {isProcessing ? 'Procesando...' : 'Confirmar pedido'}
                     </Button>
                   </div>
                 </div>
               )}
 
-              {/* Step 4: Confirmación */}
+              {/* Step 4: ConfirmaciÃ³n */}
               {currentStep === 4 && (
                 <div className="text-center">
                   <div className="mb-6">
                     <CheckCircle className="h-16 w-16 text-green-500 mx-auto" />
                   </div>
 
-                  <h2 className="text-2xl font-bold text-black mb-2">¡Pedido confirmado!</h2>
+                  <h2 className="text-2xl font-bold text-black mb-2">Â¡Pedido confirmado!</h2>
                   <p className="text-gray-600 mb-6">
-                    Tu pedido ha sido procesado correctamente. Recibiras un email de confirmación en{' '}
+                    Tu pedido ha sido procesado correctamente. Recibiras un email de confirmaciÃ³n en{' '}
                     <strong>{getCustomerEmail()}</strong>
                   </p>
 
                   <div className="bg-gray-50 rounded-lg p-6 mb-8 text-left">
-                    <p className="text-lg font-semibold text-black mb-2">Tu número de pedido es:</p>
+                    <p className="text-lg font-semibold text-black mb-2">Tu nÃºmero de pedido es:</p>
                     <p className="text-2xl font-bold text-yellow-500 mb-4">{orderNumber}</p>
-                    <p className="text-sm text-gray-600">Conserva este número para seguimiento de tu pedido</p>
+                    <p className="text-sm text-gray-600">Conserva este nÃºmero para seguimiento de tu pedido</p>
                   </div>
 
                   {/* Order Summary */}
                   <div className="bg-gray-50 rounded-lg p-6 mb-8 text-left">
                     <h3 className="text-lg font-bold text-black mb-4">Resumen del pedido</h3>
                     <div className="space-y-3 mb-4 border-b border-gray-200 pb-4">
-                      {items.map((item) => (
+                      {displayItems.map((item) => (
                         <div key={item.id} className="flex justify-between items-start">
                           <div>
                             <p className="font-semibold text-black">{item.product.name}</p>
@@ -609,7 +643,7 @@ export default function CheckoutPage() {
                         <span>{formatPrice(subtotal)}</span>
                       </div>
                       <div className="flex justify-between text-gray-600">
-                        <span>Envío:</span>
+                        <span>EnvÃ­o:</span>
                         <span>{formatPrice(shippingCost)}</span>
                       </div>
                       <div className="flex justify-between text-gray-600">
@@ -627,7 +661,7 @@ export default function CheckoutPage() {
                   <div className="bg-gray-50 rounded-lg p-6 mb-8 text-left">
                     <h3 className="text-lg font-bold text-black mb-4 flex items-center gap-2">
                       <MapPin className="h-5 w-5 text-yellow-500" />
-                      Dirección de envío
+                      DirecciÃ³n de envÃ­o
                     </h3>
                     <p className="text-gray-700">
                       {shipping.firstName} {shipping.lastName}
@@ -683,7 +717,7 @@ export default function CheckoutPage() {
                   <span>{formatPrice(subtotal)}</span>
                 </div>
                 <div className="flex justify-between text-sm text-gray-600">
-                  <span>Envío:</span>
+                  <span>EnvÃ­o:</span>
                   <span>{shippingCost === 0 ? 'Gratis' : formatPrice(shippingCost)}</span>
                 </div>
                 <div className="flex justify-between text-sm text-gray-600">
@@ -699,11 +733,11 @@ export default function CheckoutPage() {
               {/* Trust Badges */}
               <div className="pt-6 border-t border-gray-200">
                 <div className="flex items-center gap-3 mb-3">
-                  <span className="text-lg">🔒</span>
+                  <span className="text-lg">ð</span>
                   <span className="text-xs text-gray-600">Pago 100% seguro</span>
                 </div>
                 <div className="flex items-center gap-3">
-                  <span className="text-lg">✓</span>
+                  <span className="text-lg">â</span>
                   <span className="text-xs text-gray-600">Compra verificada</span>
                 </div>
               </div>
