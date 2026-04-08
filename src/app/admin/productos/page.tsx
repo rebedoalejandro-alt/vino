@@ -16,6 +16,11 @@ export default function ProductsPage() {
     if (!token) {
       router.push('/admin/login');
     }
+    // Load deleted product IDs from localStorage and filter them out
+    const deletedIds = JSON.parse(localStorage.getItem('admin_deleted_products') || '[]');
+    if (deletedIds.length > 0) {
+      setProducts(mockProducts.filter((p) => !deletedIds.includes(p.id)));
+    }
   }, [router]);
 
   const categories = ['', 'Tinto', 'Blanco', 'Rosado'];
@@ -30,7 +35,12 @@ export default function ProductsPage() {
 
   const handleDelete = (id: string) => {
     if (confirm('Â¿EstÃ¡s seguro de que deseas eliminar este producto?')) {
-      setProducts(products.filter((p) => p.id !== id));
+      const updated = products.filter((p) => p.id !== id);
+      setProducts(updated);
+      // Persist deleted IDs in localStorage
+      const deletedIds = JSON.parse(localStorage.getItem('admin_deleted_products') || '[]');
+      deletedIds.push(id);
+      localStorage.setItem('admin_deleted_products', JSON.stringify(deletedIds));
     }
   };
 
