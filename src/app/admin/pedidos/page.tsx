@@ -2,26 +2,40 @@
 
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { Search, Eye, Trash2 } from 'lucide-react';
-import { generateMockOrders, OrderStatus } from '@/lib/admin-data';
+import { Search, Eye, Trash2, ShoppingBag, ChevronUp } from 'lucide-react';
+import { generateMockOrders, type Order, type OrderStatus } from '@/lib/admin-data';
+import { getStoredOrders, deleteStoredOrder, updateOrderStatus } from '@/lib/orders-store';
 
 export default function OrdersPage() {
   const router = useRouter();
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedStatus, setSelectedStatus] = useState<OrderStatus | ''>('');
-  const [orders, setOrders] = useState(generateMockOrders());
+  const [mockOrders, setMockOrders] = useState<Order[]>([]);
+  const [realOrders, setRealOrders] = useState<Order[]>([]);
   const [expandedOrder, setExpandedOrder] = useState<string | null>(null);
 
   useEffect(() => {
     const token = localStorage.getItem('admin_token');
     if (!token) {
       router.push('/admin/login');
+      return;
     }
+    setMockOrders(generateMockOrders());
+    setRealOrders(getStoredOrders());
   }, [router]);
 
+  // Refresh real orders periodically
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setRealOrders(getStoredOrders());
+    }, 5000);
+    return () => clearInterval(interval);
+  }, []);
+
+  const allOrders = [...realOrders, ...mockOrders];
   const statuses: OrderStatus[] = ['pendiente', 'procesando', 'enviado', 'entregado', 'cancelado'];
 
-  const filteredOrders = orders.filter((order) => {
+  const filteredOrders = allOrders.filter((order) => {
     const matchesSearch =
       order.orderNumber.toLowerCase().includes(searchTerm.toLowerCase()) ||
       order.customerName.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -30,9 +44,27 @@ export default function OrdersPage() {
     return matchesSearch && matchesStatus;
   });
 
+  const isRealOrder = (id: string) => id.startsWith('order-real-');
+
   const handleDelete = (id: string) => {
     if (confirm('Â¿EstÃ¡s seguro de que deseas eliminar este pedido?')) {
-      setOrders(orders.filter((o) => o.id !== id));
+      if (isRealOrder(id)) {
+        deleteStoredOrder(id);
+        setRealOrders(getStoredOrders());
+      } else {
+        setMockOrders(mockOrders.filter((o) => o.id !== id));
+      }
+    }
+  };
+
+  const handleStatusChange = (orderId: string, newStatus: OrderStatus) => {
+    if (isRealOrder(orderId)) {
+      updateOrderStatus(orderId, newStatus);
+      setRealOrders(getStoredOrders());
+    } else {
+      setMockOrders(mockOrders.map(o =>
+        o.id === orderId ? { ...o, status: newStatus } : o
+      ));
     }
   };
 
@@ -51,12 +83,27 @@ export default function OrdersPage() {
     }
   };
 
+  const realOrderCount = realOrders.length;
+  const pendingCount = allOrders.filter(o => o.status === 'pendiente').length;
+
   return (
     <div className="p-8">
       {/* Page Header */}
       <div className="mb-8">
         <h1 className="text-3xl font-bold text-white">GestiÃ³n de Pedidos</h1>
-        <p className="text-slate-400 mt-2">Total: {filteredOrders.length} pedidos</p>
+        <div className="flex items-center gap-4 mt-2">
+          <p className="text-slate-400">Total: {filteredOrders.length} pedidos</p>
+          {realOrderCount > 0 && (
+            <span className="px-3 py-1 rounded-full text-xs font-medium bg-amber-900/30 text-amber-300">
+              {realOrderCount} pedido{realOrderCount > 1 ? 's' : ''} real{realOrderCount > 1 ? 'es' : ''}
+            </span>
+          )}
+          {pendingCount > 0 && (
+            <span className="px-3 py-1 rounded-full text-xs font-medium bg-orange-900/30 text-orange-300">
+              {pendingCount} pendiente{pendingCount > 1 ? 's' : ''}
+            </span>
+          )}
+        </div>
       </div>
 
       {/* Filters */}
@@ -89,7 +136,7 @@ export default function OrdersPage() {
           </select>
         </div>
 
-        {/* Date Range (placeholder) */}
+        {/* Date Range */}
         <div>
           <select
             defaultValue=""
@@ -132,10 +179,20 @@ export default function OrdersPage() {
             <tbody>
               {filteredOrders.length > 0 ? (
                 filteredOrders.map((order) => (
-                  <div key={order.id} className="contents">
-                    <tr className="border-b border-slate-600 hover:bg-slate-800/50 transition-colors">
+                  <>
+                    <tr
+                      key={order.id}
+                      className={`border-b border-slate-600 hover:bg-slate-800/50 transition-colors ${
+                        isRealOrder(order.id) ? 'bg-amber-900/10 border-l-4 border-l-amber-500' : ''
+                      }`}
+                    >
                       <td className="px-6 py-4 text-sm font-mono font-semibold text-white">
-                        {order.orderNumber}
+                        <div className="flex items-center gap-2">
+                          {isRealOrder(order.id) && (
+                            <ShoppingBag className="w-4 h-4 text-amber-400" />
+                          )}
+                          {order.orderNumber}
+                        </div>
                       </td>
                       <td className="px-6 py-4">
                         <div>
@@ -146,7 +203,7 @@ export default function OrdersPage() {
                         </div>
                       </td>
                       <td className="px-6 py-4 text-sm font-semibold text-white">
-                        â¬{order.total.toFixed(2)}
+                        {order.total.toFixed(2)} &euro;
                       </td>
                       <td className="px-6 py-4">
                         <span
@@ -167,12 +224,18 @@ export default function OrdersPage() {
                               )
                             }
                             className="p-1 hover:bg-slate-600 rounded transition-colors"
+                            title="Ver detalles"
                           >
-                            <Eye className="w-4 h-4 text-blue-400" />
+                            {expandedOrder === order.id ? (
+                              <ChevronUp className="w-4 h-4 text-blue-400" />
+                            ) : (
+                              <Eye className="w-4 h-4 text-blue-400" />
+                            )}
                           </button>
                           <button
                             onClick={() => handleDelete(order.id)}
                             className="p-1 hover:bg-slate-600 rounded transition-colors"
+                            title="Eliminar pedido"
                           >
                             <Trash2 className="w-4 h-4 text-red-400" />
                           </button>
@@ -182,10 +245,10 @@ export default function OrdersPage() {
 
                     {/* Expanded Order Details */}
                     {expandedOrder === order.id && (
-                      <tr className="border-b border-slate-600 bg-slate-800">
+                      <tr key={`${order.id}-detail`} className="border-b border-slate-600 bg-slate-800">
                         <td colSpan={6} className="px-6 py-4">
                           <div className="space-y-4">
-                            <div className="grid grid-cols-2 gap-4">
+                            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                               <div>
                                 <p className="text-xs text-slate-400 mb-1">
                                   DIRECCIÃN DE ENVÃO
@@ -202,6 +265,22 @@ export default function OrdersPage() {
                                   {order.paymentMethod}
                                 </p>
                               </div>
+                              <div>
+                                <p className="text-xs text-slate-400 mb-1">
+                                  CAMBIAR ESTADO
+                                </p>
+                                <select
+                                  value={order.status}
+                                  onChange={(e) => handleStatusChange(order.id, e.target.value as OrderStatus)}
+                                  className="w-full px-3 py-1 bg-slate-700 border border-slate-600 text-white rounded text-sm focus:outline-none focus:border-amber-500"
+                                >
+                                  {statuses.map((s) => (
+                                    <option key={s} value={s}>
+                                      {s.charAt(0).toUpperCase() + s.slice(1)}
+                                    </option>
+                                  ))}
+                                </select>
+                              </div>
                             </div>
 
                             {/* Items */}
@@ -217,17 +296,26 @@ export default function OrdersPage() {
                                       {item.productName} x{item.quantity}
                                     </span>
                                     <span className="text-amber-400 font-semibold">
-                                      â¬{item.total.toFixed(2)}
+                                      {item.total.toFixed(2)} &euro;
                                     </span>
                                   </div>
                                 ))}
+                              </div>
+                            </div>
+
+                            {/* Order Total Summary */}
+                            <div className="flex justify-end pt-2 border-t border-slate-600">
+                              <div className="text-right">
+                                <p className="text-sm text-slate-400">
+                                  Total: <span className="text-lg font-bold text-amber-400">{order.total.toFixed(2)} &euro;</span>
+                                </p>
                               </div>
                             </div>
                           </div>
                         </td>
                       </tr>
                     )}
-                  </div>
+                  </>
                 ))
               ) : (
                 <tr>
