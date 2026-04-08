@@ -1,3 +1,5 @@
+import { wineData, bodegas } from './carrefour-products';
+
 export type OrderStatus = 'pendiente' | 'procesando' | 'enviado' | 'entregado' | 'cancelado';
 
 export interface OrderItem {
@@ -55,21 +57,10 @@ export interface WineCategory {
   productCount: number;
 }
 
-const spanishFirstNames = ['Juan', 'María', 'Carlos', 'Ana', 'José', 'Isabel', 'Miguel', 'Rosa', 'Antonio', 'Carmen', 'Francisco', 'Teresa', 'Manuel', 'Dolores', 'Pedro', 'Josefa', 'Diego', 'Luisa', 'Javier', 'María José'];
-const spanishLastNames = ['García', 'Rodríguez', 'Martínez', 'Hernández', 'López', 'González', 'Pérez', 'Sánchez', 'Ramírez', 'Torres', 'Flores', 'Rivera', 'Gómez', 'Diaz', 'Cruz', 'Morales', 'Gutierrez', 'Ortiz', 'Jimenez', 'Vargas'];
-const cities = ['Madrid', 'Barcelona', 'Valencia', 'Sevilla', 'Bilbao', 'Zaragoza', 'Málaga', 'Alicante', 'Córdoba', 'Valladolid', 'Palma', 'Toledo', 'Alcalá', 'Murcia', 'Cádiz', 'Vigo', 'Gijón', 'La Coruña', 'Elche', 'Burgos'];
-const wineProducts = [
-  'Marqués de Riscal Reserva',
-  'Protos Crianza',
-  'Tres Reinos Tempranillo',
-  'Cune Gran Reserva',
-  'Beronia Crianza',
-  'Marqués de Cáceres Roble',
-  'Viña Pomal Reserva',
-  'Ramón Bilbao Crianza',
-  'Coto de Imaz Reserva',
-  'Faustino Gran Reserva',
-];
+const spanishFirstNames = ['Juan', 'MarÃ­a', 'Carlos', 'Ana', 'JosÃ©', 'Isabel', 'Miguel', 'Rosa', 'Antonio', 'Carmen', 'Francisco', 'Teresa', 'Manuel', 'Dolores', 'Pedro', 'Josefa', 'Diego', 'Luisa', 'Javier', 'MarÃ­a JosÃ©'];
+const spanishLastNames = ['GarcÃ­a', 'RodrÃ­guez', 'MartÃ­nez', 'HernÃ¡ndez', 'LÃ³pez', 'GonzÃ¡lez', 'PÃ©rez', 'SÃ¡nchez', 'RamÃ­rez', 'Torres', 'Flores', 'Rivera', 'GÃ³mez', 'Diaz', 'Cruz', 'Morales', 'Gutierrez', 'Ortiz', 'Jimenez', 'Vargas'];
+const cities = ['Madrid', 'Barcelona', 'Valencia', 'Sevilla', 'Bilbao', 'Zaragoza', 'MÃ¡laga', 'Alicante', 'CÃ³rdoba', 'Valladolid', 'Palma', 'Toledo', 'AlcalÃ¡', 'Murcia', 'CÃ¡diz', 'Vigo', 'GijÃ³n', 'La CoruÃ±a', 'Elche', 'Burgos'];
+const wineProducts = wineData.map((w: { name: string }) => w.name);
 
 function getRandomItem<T>(arr: T[]): T {
   return arr[Math.floor(Math.random() * arr.length)];
@@ -151,7 +142,7 @@ export function generateMockOrders(): Order[] {
       total: Math.round(total * 100) / 100,
       items,
       shippingAddress: `Calle Principal ${Math.floor(Math.random() * 500) + 1}, ${getRandomItem(cities)}`,
-      paymentMethod: getRandomItem(['Tarjeta de crédito', 'PayPal', 'Transferencia bancaria', 'Bizum']),
+      paymentMethod: getRandomItem(['Tarjeta de crÃ©dito', 'PayPal', 'Transferencia bancaria', 'Bizum']),
     });
   }
 
@@ -190,97 +181,37 @@ export const wineCategories: WineCategory[] = [
     name: 'Tinto',
     description: 'Vinos tintos varietales y mezclas',
     slug: 'tinto',
-    productCount: 85,
+    productCount: wineData.filter((w: { type: string }) => w.type === 'tinto').length,
   },
   {
     id: 'cat-2',
     name: 'Blanco',
-    description: 'Vinos blancos frescos y aromáticos',
+    description: 'Vinos blancos frescos y aromÃ¡ticos',
     slug: 'blanco',
-    productCount: 42,
+    productCount: wineData.filter((w: { type: string }) => w.type === 'blanco').length,
   },
   {
     id: 'cat-3',
     name: 'Rosado',
     description: 'Vinos rosados y clarete',
     slug: 'rosado',
-    productCount: 18,
-  },
-  {
-    id: 'cat-4',
-    name: 'Espumoso',
-    description: 'Cavas y vinos espumosos',
-    slug: 'espumoso',
-    productCount: 24,
-  },
-  {
-    id: 'cat-5',
-    name: 'Fortified',
-    description: 'Jerez, Oporto y vinos generosos',
-    slug: 'fortified',
-    productCount: 15,
+    productCount: wineData.filter((w: { type: string }) => w.type === 'rosado').length,
   },
 ];
 
-export const mockProducts: Product[] = [
-  {
-    id: 'prod-1',
-    name: 'Marqués de Riscal Reserva',
-    sku: 'MR-RES-2019',
-    category: 'Tinto',
-    price: 14.99,
-    stock: 125,
-    image: 'https://static.carrefour.es/hd_510x_/img_pim_food/000093_00_1.jpg',
-    vintage: 2019,
-    region: 'Rioja',
-    bodega: 'Marqués de Riscal',
-  },
-  {
-    id: 'prod-2',
-    name: 'Protos Crianza',
-    sku: 'PRO-CRI-2021',
-    category: 'Tinto',
-    price: 11.75,
-    stock: 89,
-    image: 'https://static.carrefour.es/hd_510x_/img_pim_food/000197_00_1.jpg',
-    vintage: 2021,
-    region: 'Ribera del Duero',
-    bodega: 'Protos',
-  },
-  {
-    id: 'prod-3',
-    name: 'Tres Reinos Tempranillo',
-    sku: 'TR-TEMP-2021',
-    category: 'Tinto',
-    price: 7.85,
-    stock: 234,
-    image: 'https://static.carrefour.es/hd_510x_/img_pim_food/236233_00_1.jpg',
-    vintage: 2021,
-    region: 'Ribera del Duero',
-    bodega: 'Tres Reinos',
-  },
-  {
-    id: 'prod-4',
-    name: 'Cune Gran Reserva',
-    sku: 'CUN-GR-2019',
-    category: 'Tinto',
-    price: 8.69,
-    stock: 156,
-    image: 'https://static.carrefour.es/hd_510x_/img_pim_food/000050_00_1.jpg',
-    vintage: 2019,
-    region: 'Rioja',
-    bodega: 'Cune',
-  },
-  {
-    id: 'prod-5',
-    name: 'Martín Códax Blanco',
-    sku: 'MC-BLANCO-2023',
-    category: 'Blanco',
-    price: 8.99,
-    stock: 178,
-    image: 'https://static.carrefour.es/hd_510x_/img_pim_food/000152_00_1.jpg',
-    vintage: 2023,
-    region: 'Rías Baixas',
-    bodega: 'Martín Códax',
-  },
-];
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const categoryMap: { [key: string]: string } = { tinto: 'Tinto', blanco: 'Blanco', rosado: 'Rosado' };
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export const mockProducts: Product[] = wineData.map((w: any) => ({
+  id: `car-${w.idx}`,
+  name: w.name,
+  sku: `CAR-${String(w.idx).padStart(3, '0')}`,
+  category: categoryMap[w.type] || w.type,
+  price: w.price,
+  stock: w.featured ? 50 : Math.floor(Math.random() * 200) + 20,
+  image: w.image,
+  vintage: w.vintage,
+  region: bodegas[w.bodega]?.region || '',
+  bodega: bodegas[w.bodega]?.name || w.bodega,
+}));
