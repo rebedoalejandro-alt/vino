@@ -101,3 +101,4 @@ export default function AdminSidebar({ onNavigate }: { onNavigate?: () => void }
     </aside>
   );
 }
+fix: encoding issues in Sidebar component
