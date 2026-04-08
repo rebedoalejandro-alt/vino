@@ -1,5 +1,6 @@
 'use client';
 
+import { useState } from 'react';
 import { usePathname } from 'next/navigation';
 import { useAdminAuth } from '@/lib/admin-auth';
 import AdminSidebar from '@/components/admin/Sidebar';
@@ -13,6 +14,7 @@ export default function AdminLayoutContent({
   const { isAuthenticated, isLoading } = useAdminAuth();
   const pathname = usePathname();
   const isLoginPage = pathname === '/admin/login';
+  const [sidebarOpen, setSidebarOpen] = useState(false);
 
   // Show sidebar/header only when authenticated and not on login page
   const showChrome = isAuthenticated && !isLoginPage;
@@ -35,9 +37,25 @@ export default function AdminLayoutContent({
 
   return (
     <div className="flex h-screen bg-slate-900">
-      <AdminSidebar />
+      {/* Mobile overlay */}
+      {sidebarOpen && (
+        <div
+          className="fixed inset-0 bg-black/60 z-40 lg:hidden"
+          onClick={() => setSidebarOpen(false)}
+        />
+      )}
+
+      {/* Sidebar: hidden on mobile, visible on lg+ */}
+      <div
+        className={`fixed inset-y-0 left-0 z-50 transform transition-transform duration-200 ease-in-out lg:relative lg:translate-x-0 ${
+          sidebarOpen ? 'translate-x-0' : '-translate-x-full'
+        }`}
+      >
+        <AdminSidebar onNavigate={() => setSidebarOpen(false)} />
+      </div>
+
       <div className="flex-1 flex flex-col overflow-hidden">
-        <AdminHeader />
+        <AdminHeader onMenuToggle={() => setSidebarOpen(!sidebarOpen)} />
         <main className="flex-1 overflow-y-auto bg-slate-800">
           {children}
         </main>
