@@ -10,7 +10,7 @@ import {
   ArrowUpRight,
   ArrowDownRight,
 } from 'lucide-react';
-import { generateMockOrders, generateMockCustomers } from '@/lib/admin-data';
+import { generateMockOrders, generateMockCustomers, mockProducts } from '@/lib/admin-data';
 import RecentOrdersChart from '@/components/admin/RecentOrdersChart';
 import SalesChart from '@/components/admin/SalesChart';
 
@@ -31,7 +31,7 @@ export default function DashboardPage() {
   const totalOrders = mockOrders.length;
   const totalRevenue = mockOrders.reduce((sum, order) => sum + order.total, 0);
   const totalCustomers = mockCustomers.length;
-  const totalProducts = 180;
+  const totalProducts = mockProducts.length;
 
   // Recent orders (last 5)
   const recentOrders = mockOrders.slice(0, 5);
@@ -59,7 +59,7 @@ export default function DashboardPage() {
             </div>
           </div>
           <p className="text-3xl font-bold text-white">
-            €{totalRevenue.toFixed(2)}
+            â¬{totalRevenue.toFixed(2)}
           </p>
           <div className="flex items-center gap-1 mt-2">
             <ArrowUpRight className="w-4 h-4 text-green-500" />
@@ -133,7 +133,7 @@ export default function DashboardPage() {
             <thead>
               <tr className="border-b border-slate-600 bg-slate-800">
                 <th className="px-6 py-3 text-left text-xs font-medium text-slate-300 uppercase">
-                  Número
+                  NÃºmero
                 </th>
                 <th className="px-6 py-3 text-left text-xs font-medium text-slate-300 uppercase">
                   Cliente
@@ -160,7 +160,7 @@ export default function DashboardPage() {
                   </td>
                   <td className="px-6 py-4 text-sm text-white">{order.customerName}</td>
                   <td className="px-6 py-4 text-sm text-white font-semibold">
-                    €{order.total.toFixed(2)}
+                    â¬{order.total.toFixed(2)}
                   </td>
                   <td className="px-6 py-4 text-sm">
                     <span
