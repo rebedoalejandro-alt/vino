@@ -18,7 +18,7 @@
   </text>
   <!-- Tagline -->
   <text x="36" y="44" font-family="Georgia, 'Times New Roman', serif" font-size="9" font-weight="400" letter-spacing="3" fill="#92400e">
-    <tspan>SELECCIÃN DE VINOS</tspan>
+    <tspan>SELECCI&#xD3;N DE VINOS</tspan>
   </text>
   <!-- Decorative line -->
   <line x1="36" y1="31" x2="210" y2="31" stroke="#b45309" stroke-width="0.5" opacity="0.4"/>
