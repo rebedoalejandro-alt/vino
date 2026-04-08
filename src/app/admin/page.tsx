@@ -59,7 +59,7 @@ export default function DashboardPage() {
             </div>
           </div>
           <p className="text-3xl font-bold text-white">
-            â¬{totalRevenue.toFixed(2)}
+            Ã¢ÂÂ¬{totalRevenue.toFixed(2)}
           </p>
           <div className="flex items-center gap-1 mt-2">
             <ArrowUpRight className="w-4 h-4 text-green-500" />
@@ -160,7 +160,7 @@ export default function DashboardPage() {
                   </td>
                   <td className="px-6 py-4 text-sm text-white">{order.customerName}</td>
                   <td className="px-6 py-4 text-sm text-white font-semibold">
-                    â¬{order.total.toFixed(2)}
+                    Ã¢ÂÂ¬{order.total.toFixed(2)}
                   </td>
                   <td className="px-6 py-4 text-sm">
                     <span
