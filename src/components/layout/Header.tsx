@@ -20,7 +20,7 @@ export default function Header() {
       {/* Top Info Bar */}
       <div className="bg-gray-100 text-center py-2">
         <p className="text-xs text-gray-600 font-medium">
-          Envío gratuito a partir de 150€
+          EnvÃ­o gratuito a partir de 150â¬
         </p>
       </div>
 
@@ -34,9 +34,11 @@ export default function Header() {
               className="flex-shrink-0"
               aria-label="Casa del Vino - Inicio"
             >
-              <div className="text-2xl md:text-3xl font-serif font-bold text-gray-900">
-                casa del vino
-              </div>
+              <img
+                src="/logo.svg"
+                alt="Casa del Vino"
+                className="h-10 md:h-12 w-auto"
+              />
             </Link>
 
             {/* Search Bar - Hidden on mobile, shown on tablet+ */}
@@ -128,7 +130,7 @@ export default function Header() {
               className="text-gray-600 hover:text-gray-900 transition-colors flex items-center gap-1"
             >
               <Package size={16} />
-              <span className="hidden sm:inline">¿Dónde está mi pedido?</span>
+              <span className="hidden sm:inline">Â¿DÃ³nde estÃ¡ mi pedido?</span>
             </Link>
           </div>
         </div>
