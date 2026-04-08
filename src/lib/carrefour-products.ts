@@ -38,6 +38,9 @@ export const bodegas: { [key: string]: any } = {
   'moralinos': { id: 'b45', name: 'Moralinos', country: 'Spain', region: 'Castilla y LeÃ³n', founded: 2010, image: 'https://static.carrefour.es/hd_510x_/img_pim_food/722202_00_1.jpg' },
   'sabasan': { id: 'b46', name: 'Sabasan', country: 'Spain', region: 'Navarre', founded: 1995, image: 'https://static.carrefour.es/hd_510x_/img_pim_food/493470_00_1.jpg' },
   'bleu-de-mer': { id: 'b47', name: 'Bleu de Mer', country: 'France', region: 'Languedoc', founded: 2005, image: 'https://static.carrefour.es/hd_510x_/img_pim_food/954502_00_1.jpg' },
+  'protos': { id: 'b48', name: 'Protos', country: 'Spain', region: 'Castilla y León', founded: 1927, image: 'https://static.carrefour.es/hd_510x_/img_pim_food/000194_00_1.jpg' },
+  'celeste': { id: 'b49', name: 'Celeste', country: 'Spain', region: 'Castilla y León', founded: 2004, image: 'https://static.carrefour.es/hd_510x_/img_pim_food/306379_00_1.jpg' },
+  'marques-de-caceres': { id: 'b50', name: 'Marqués de Cáceres', country: 'Spain', region: 'La Rioja', founded: 1970, image: 'https://static.carrefour.es/hd_510x_/img_pim_food/000091_00_1.jpg' },
 };
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
