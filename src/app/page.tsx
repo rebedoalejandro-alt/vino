@@ -57,7 +57,7 @@ const regions: { [key: string]: any } = {
   'valdepenias': { id: 'r3', name: 'ValdepeÃ±as', country: 'Spain', image: 'https://static.carrefour.es/hd_510x_/img_pim_food/000157_00_1.jpg' },
   'rueda': { id: 'r4', name: 'Rueda', country: 'Spain', image: 'https://static.carrefour.es/hd_510x_/img_pim_food/000098_00_1.jpg' },
   'rias-baixas': { id: 'r5', name: 'RÃ­as Baixas', country: 'Spain', image: 'https://static.carrefour.es/hd_510x_/img_pim_food/000152_00_1.jpg' },
-  'penedes': { id: 'r6', name: 'PenedÃ¨s', country: 'Spain', image: 'https://static.carrefour.es/hd_510x_/img_pim_food/000221_00_1.jpg' },
+  'penedes': { id: 'r6', name: 'PenedÃÂ¨s', country: 'Spain', image: 'https://static.carrefour.es/hd_510x_/img_pim_food/000221_00_1.jpg' },
   'toro': { id: 'r7', name: 'Toro', country: 'Spain', image: 'https://static.carrefour.es/hd_510x_/img_pim_food/217505_00_1.jpg' },
   'navarre': { id: 'r8', name: 'Navarre', country: 'Spain', image: 'https://static.carrefour.es/hd_510x_/img_pim_food/000239_00_1.jpg' },
 };
@@ -68,7 +68,7 @@ const grapes: { [key: string]: any } = {
   'verdejo': { id: 'g2', name: 'Verdejo', image: 'https://static.carrefour.es/hd_510x_/img_pim_food/000098_00_1.jpg' },
   'albarino': { id: 'g3', name: 'AlbariÃ±o', image: 'https://static.carrefour.es/hd_510x_/img_pim_food/000152_00_1.jpg' },
   'garnacha': { id: 'g4', name: 'Garnacha', image: 'https://static.carrefour.es/hd_510x_/img_pim_food/000234_00_1.jpg' },
-  'xarel-lo': { id: 'g5', name: 'XarelÂ·lo', image: 'https://static.carrefour.es/hd_510x_/img_pim_food/000221_00_1.jpg' },
+  'xarel-lo': { id: 'g5', name: 'XarelÃÂ·lo', image: 'https://static.carrefour.es/hd_510x_/img_pim_food/000221_00_1.jpg' },
 };
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -120,7 +120,7 @@ const wineData: any[] = [
   { idx: 40, name: 'Vino blanco verdejo D.O. Rueda MarquÃ©s de Riscal 75 cl.', price: 6.99, image: 'https://static.carrefour.es/hd_510x_/img_pim_food/000098_00_1.jpg', type: 'blanco', bodega: 'marques-de-riscal', region: 'rueda', grapes: ['verdejo'], vintage: 2023, volume: 750, alcohol: 12.5, acidity: 3.7, featured: true },
   { idx: 41, name: 'Vino blanco albariÃ±o D.O. RÃ­as Baixas MartÃ­n CÃ³dax 75 cl.', price: 8.99, image: 'https://static.carrefour.es/hd_510x_/img_pim_food/000152_00_1.jpg', type: 'blanco', bodega: 'martÃ­n-cÃ³dax', region: 'rias-baixas', grapes: ['albarino'], vintage: 2023, volume: 750, alcohol: 12.5, acidity: 3.5, featured: true },
   { idx: 42, name: 'Vino blanco verdejo D.O. Rueda JosÃ© Pariente 75 cl.', price: 8.39, image: 'https://static.carrefour.es/hd_510x_/img_pim_food/306253_00_1.jpg', type: 'blanco', bodega: 'jose-pariente', region: 'rueda', grapes: ['verdejo'], vintage: 2023, volume: 750, alcohol: 12.5, acidity: 3.7, featured: true },
-  { idx: 43, name: 'Vino blanco semidulce D.O. PenedÃ¨s ViÃ±a Sol 75 cl.', price: 4.45, image: 'https://static.carrefour.es/hd_510x_/img_pim_food/000221_00_1.jpg', type: 'blanco', bodega: 'vina-sol', region: 'penedes', grapes: ['xarel-lo'], vintage: 2023, volume: 750, alcohol: 12.0, acidity: 3.6 },
+  { idx: 43, name: 'Vino blanco semidulce D.O. PenedÃÂ¨s ViÃ±a Sol 75 cl.', price: 4.45, image: 'https://static.carrefour.es/hd_510x_/img_pim_food/000221_00_1.jpg', type: 'blanco', bodega: 'vina-sol', region: 'penedes', grapes: ['xarel-lo'], vintage: 2023, volume: 750, alcohol: 12.0, acidity: 3.6 },
   { idx: 44, name: 'Vino blanco verdejo Protos D.O. Rueda 75 cl.', price: 6.99, image: 'https://static.carrefour.es/hd_510x_/img_pim_food/267505_00_1.jpg', type: 'blanco', bodega: 'protos', region: 'rueda', grapes: ['verdejo'], vintage: 2023, volume: 750, alcohol: 12.5, acidity: 3.7 },
   { idx: 45, name: 'Vino rosado Carrefour Classic brik 1 l.', price: 1.31, image: 'https://static.carrefour.es/hd_510x_/img_pim_food/513381_00_1.jpg', type: 'rosado', bodega: 'carrefour', region: 'rioja', grapes: ['garnacha'], vintage: 2023, volume: 1000, alcohol: 12.0, acidity: 3.8 },
   { idx: 46, name: 'Vino rosado joven PeÃ±ascal 75 cl.', price: 4.25, image: 'https://static.carrefour.es/hd_510x_/img_pim_food/000234_00_1.jpg', type: 'rosado', bodega: 'penascal', region: 'rioja', grapes: ['garnacha'], vintage: 2023, volume: 750, alcohol: 12.0, acidity: 3.8 },
