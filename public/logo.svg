@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 60" fill="none">
+  <!-- Wine glass icon -->
+  <g transform="translate(0, 5)">
+    <!-- Glass bowl -->
+    <path d="M12 2 C12 2 6 18 6 24 C6 30 10 34 16 34 C22 34 26 30 26 24 C26 18 20 2 20 2"
+          fill="#b45309" opacity="0.15" stroke="#b45309" stroke-width="1.5" stroke-linecap="round"/>
+    <!-- Wine level -->
+    <path d="M8.5 20 C8.5 20 7.5 24 7.5 26 C7.5 30.5 11 33 16 33 C21 33 24.5 30.5 24.5 26 C24.5 24 23.5 20 23.5 20 Z"
+          fill="#b45309" opacity="0.35"/>
+    <!-- Stem -->
+    <line x1="16" y1="34" x2="16" y2="44" stroke="#b45309" stroke-width="1.8" stroke-linecap="round"/>
+    <!-- Base -->
+    <path d="M10 44 C10 44 16 46 22 44" stroke="#b45309" stroke-width="1.8" stroke-linecap="round"/>
+  </g>
+  <!-- Text: casa del vino -->
+  <text x="36" y="28" font-family="Georgia, 'Times New Roman', serif" font-size="16" font-weight="400" letter-spacing="1.5" fill="#1a1a1a">
+    <tspan>CASA DEL VINO</tspan>
+  </text>
+  <!-- Tagline -->
+  <text x="36" y="44" font-family="Georgia, 'Times New Roman', serif" font-size="9" font-weight="400" letter-spacing="3" fill="#92400e">
+    <tspan>SELECCIÃN DE VINOS</tspan>
+  </text>
+  <!-- Decorative line -->
+  <line x1="36" y1="31" x2="210" y2="31" stroke="#b45309" stroke-width="0.5" opacity="0.4"/>
+</svg>
